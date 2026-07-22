@@ -11,203 +11,282 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #faf9f7;
-      --surface: #ffffff;
-      --text: #1c1b1a;
-      --text-soft: #57534e;
-      --text-faint: #a8a29e;
+      --bg-1: #1e3a8a;
+      --bg-2: #2563eb;
+      --card: #ffffff;
+      --text: #101828;
+      --text-soft: #475467;
+      --text-faint: #98a2b3;
       --accent: #1d4ed8;
-      --line: #e7e5e4;
-      --radius: 16px;
+      --accent-soft: #eff4ff;
+      --line: #eaecf0;
+      --radius: 14px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
+      background: linear-gradient(170deg, var(--bg-1) 0%, var(--bg-2) 55%, #3b82f6 100%);
+      background-attachment: fixed;
       color: var(--text);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-size: 17px;
-      line-height: 1.7;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
     }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px; }
 
-    /* ---- Header ---- */
-    header {
+    /* ---- Top bar ---- */
+    .topbar {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 28px 0;
+      padding: 20px 4px 24px;
     }
     .brand {
-      font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem;
-      letter-spacing: 0.01em; color: var(--text); text-decoration: none;
+      color: #fff; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      letter-spacing: 0.01em; opacity: 0.95;
     }
     .lang-switch {
-      display: flex; gap: 2px; background: var(--line); border-radius: 999px; padding: 3px;
+      display: flex; gap: 2px; background: rgba(255,255,255,.14); border-radius: 999px; padding: 3px;
+      backdrop-filter: blur(8px);
     }
     .lang-switch button {
-      border: 0; background: transparent; font: inherit; font-size: 0.8rem; font-weight: 600;
-      padding: 4px 14px; border-radius: 999px; cursor: pointer; color: var(--text-soft);
+      border: 0; background: transparent; font: inherit; font-size: 0.78rem; font-weight: 700;
+      padding: 5px 15px; border-radius: 999px; cursor: pointer; color: rgba(255,255,255,.75);
       transition: all .2s;
     }
-    .lang-switch button.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .lang-switch button.active { background: #fff; color: var(--text); }
 
-    /* ---- Hero ---- */
-    .hero { padding: 72px 0 64px; text-align: center; }
+    /* ---- Cards ---- */
+    .card {
+      background: var(--card); border-radius: var(--radius);
+      box-shadow: 0 1px 2px rgba(16,24,40,.06), 0 8px 24px rgba(16,24,40,.10);
+      margin-bottom: 20px; overflow: hidden;
+    }
+    .card-body { padding: 8px 40px 36px; }
+    .card-pad { padding: 30px 40px 34px; }
+    .card h2 {
+      font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 18px;
+    }
+
+    /* ---- Hero card ---- */
+    .cover {
+      height: 170px;
+      background:
+        radial-gradient(120% 160% at 85% 0%, rgba(255,255,255,.28) 0%, rgba(255,255,255,0) 45%),
+        linear-gradient(115deg, #0f2167 0%, #1d4ed8 45%, #7c3aed 100%);
+      position: relative;
+    }
+    .cover::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(105deg, transparent 35%, black 100%);
+      -webkit-mask-image: linear-gradient(105deg, transparent 35%, black 100%);
+    }
     .avatar {
-      width: 112px; height: 112px; border-radius: 50%;
+      width: 128px; height: 128px; border-radius: 50%;
+      border: 5px solid #fff;
       background: linear-gradient(135deg, #1d4ed8, #7c3aed);
       color: #fff; display: flex; align-items: center; justify-content: center;
-      font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 500;
-      margin: 0 auto 28px; letter-spacing: 0.02em;
-      box-shadow: 0 12px 32px rgba(29, 78, 216, .25);
+      font-size: 2.6rem; font-weight: 800; letter-spacing: 0.01em;
+      margin: -68px 0 0 40px; position: relative;
+      box-shadow: 0 4px 16px rgba(16,24,40,.15);
     }
-    .hero h1 {
-      font-family: 'Fraunces', serif; font-weight: 600;
-      font-size: clamp(2.2rem, 6vw, 3.1rem); line-height: 1.15; letter-spacing: -0.01em;
+    .hero-body { padding: 18px 40px 36px; }
+    .hero-body h1 {
+      font-size: clamp(1.9rem, 5.5vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.15;
     }
-    .tagline {
-      margin-top: 14px; font-size: 1.15rem; color: var(--text-soft); font-weight: 500;
+    .role-line {
+      display: flex; align-items: center; gap: 8px; margin-top: 8px; flex-wrap: wrap;
+      color: var(--text-soft); font-size: 0.95rem; font-weight: 500;
     }
-    .intro {
-      margin: 22px auto 0; max-width: 540px; color: var(--text-soft); font-size: 1rem;
+    .verified {
+      display: inline-flex; width: 20px; height: 20px; flex-shrink: 0;
+      color: var(--accent);
     }
-    .hero-links { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .icon-row { display: flex; gap: 14px; margin-top: 16px; align-items: center; }
+    .icon-row a {
+      color: var(--text); opacity: 0.85; display: inline-flex;
+      transition: all .15s;
+    }
+    .icon-row a:hover { opacity: 1; transform: translateY(-2px); color: var(--accent); }
+    .icon-row svg { width: 21px; height: 21px; }
+    .bio { margin-top: 18px; color: var(--text-soft); font-size: 0.98rem; max-width: 560px; }
+    .hero-actions { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; }
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 11px 22px; border-radius: 999px; text-decoration: none;
-      font-size: 0.92rem; font-weight: 600; transition: all .2s;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 24px; border-radius: 10px; text-decoration: none;
+      font-size: 0.9rem; font-weight: 600; transition: all .18s; border: 1.5px solid transparent;
     }
-    .btn-primary { background: var(--text); color: var(--bg); }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.18); }
-    .btn-ghost { border: 1.5px solid var(--line); color: var(--text); background: var(--surface); }
-    .btn-ghost:hover { border-color: var(--text-faint); transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #1e40af; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(29,78,216,.35); }
+    .btn-ghost { border-color: var(--line); color: var(--text); background: #fff; }
+    .btn-ghost:hover { border-color: var(--text-faint); background: #fafafa; }
 
-    /* ---- Sections ---- */
-    section { padding: 56px 0; border-top: 1px solid var(--line); }
-    .eyebrow {
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 18px;
+    /* ---- Chips ---- */
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
+    .chip {
+      font-size: 0.78rem; font-weight: 600; padding: 6px 14px; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent);
     }
-    .prose { color: var(--text-soft); max-width: 620px; }
-    .prose strong { color: var(--text); font-weight: 600; }
 
     /* ---- Areas ---- */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px; }
-    .card {
-      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 26px 24px; transition: all .25s;
+    .area {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px 0; border-bottom: 1px solid var(--line);
     }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.07); }
-    .card .icon { font-size: 1.5rem; margin-bottom: 14px; display: block; }
-    .card h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 8px; }
-    .card p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.6; }
+    .area:last-child { border-bottom: 0; padding-bottom: 4px; }
+    .area:first-of-type { padding-top: 4px; }
+    .area-icon {
+      flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px;
+      background: var(--accent-soft); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .area-icon svg { width: 22px; height: 22px; }
+    .area h3 { font-size: 0.98rem; font-weight: 700; }
+    .area p { font-size: 0.9rem; color: var(--text-soft); margin-top: 3px; }
 
     /* ---- Projects ---- */
-    .project {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 24px 0; border-bottom: 1px solid var(--line);
-    }
-    .project:last-child { border-bottom: 0; }
-    .project .dot {
-      flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%;
-      background: var(--accent); margin-top: 10px;
-    }
-    .project h3 { font-size: 1.05rem; font-weight: 600; }
-    .project p { color: var(--text-soft); font-size: 0.95rem; margin-top: 6px; }
-    .tags { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .project { padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .project:last-child { border-bottom: 0; padding-bottom: 4px; }
+    .project:first-of-type { padding-top: 4px; }
+    .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .project h3 { font-size: 1rem; font-weight: 700; }
+    .project-type { font-size: 0.74rem; font-weight: 600; color: var(--text-faint); white-space: nowrap; text-transform: uppercase; letter-spacing: 0.06em; }
+    .project p { color: var(--text-soft); font-size: 0.92rem; margin-top: 6px; }
+    .tags { margin-top: 12px; display: flex; gap: 7px; flex-wrap: wrap; }
     .tag {
-      font-size: 0.74rem; font-weight: 600; padding: 3px 12px; border-radius: 999px;
-      background: var(--line); color: var(--text-soft);
+      font-size: 0.74rem; font-weight: 600; padding: 4px 12px; border-radius: 999px;
+      background: #f2f4f7; color: var(--text-soft); border: 1px solid var(--line);
     }
 
-    /* ---- Contact ---- */
-    .contact-box {
-      background: var(--text); color: var(--bg); border-radius: 24px;
-      padding: 48px 40px; text-align: center;
+    /* ---- Contact rows (verified-accounts style) ---- */
+    .contact-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 15px 0; border-bottom: 1px solid var(--line);
+      text-decoration: none; color: inherit; transition: all .15s;
     }
-    .contact-box h2 { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 600; }
-    .contact-box p { margin-top: 10px; opacity: 0.75; font-size: 0.98rem; }
-    .contact-box .btn { background: var(--bg); color: var(--text); margin-top: 26px; }
-    .socials { margin-top: 22px; display: flex; gap: 20px; justify-content: center; }
-    .socials a { color: var(--bg); opacity: 0.65; text-decoration: none; font-size: 0.88rem; font-weight: 500; }
-    .socials a:hover { opacity: 1; }
+    .contact-row:last-child { border-bottom: 0; padding-bottom: 4px; }
+    .contact-row:first-of-type { padding-top: 4px; }
+    .contact-row:hover .contact-name { color: var(--accent); }
+    .contact-ic {
+      flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+      background: #f2f4f7; display: flex; align-items: center; justify-content: center;
+      color: var(--text);
+    }
+    .contact-ic svg { width: 19px; height: 19px; }
+    .contact-name { font-size: 0.94rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .contact-name .verified { width: 16px; height: 16px; }
+    .contact-url { font-size: 0.85rem; color: var(--text-soft); }
+    .contact-arrow { margin-left: auto; color: var(--text-faint); flex-shrink: 0; }
+    .contact-arrow svg { width: 16px; height: 16px; }
 
     footer {
-      padding: 40px 0 48px; text-align: center;
-      color: var(--text-faint); font-size: 0.82rem;
+      padding: 16px 4px 44px; text-align: center;
+      color: rgba(255,255,255,.7); font-size: 0.8rem;
     }
+    footer a { color: rgba(255,255,255,.9); text-decoration: none; font-weight: 600; }
 
     [data-lang="en"] { display: none; }
     html.en [data-lang="en"] { display: revert; }
     html.en [data-lang="es"] { display: none; }
 
     @media (max-width: 560px) {
-      .hero { padding: 48px 0 48px; }
-      .contact-box { padding: 40px 24px; }
+      .card-body, .card-pad, .hero-body { padding-left: 24px; padding-right: 24px; }
+      .avatar { margin-left: 24px; width: 108px; height: 108px; margin-top: -58px; font-size: 2.2rem; }
+      .cover { height: 130px; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
 
-    <header>
+    <div class="topbar">
       <a class="brand" href="#">douglasdeleon.com</a>
       <div class="lang-switch" role="group" aria-label="Idioma / Language">
         <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
         <button id="btn-en" onclick="setLang('en')">EN</button>
       </div>
-    </header>
+    </div>
 
     <main>
-      <div class="hero">
+      <!-- Hero -->
+      <div class="card">
+        <div class="cover"></div>
         <div class="avatar">DL</div>
-        <h1>Douglas de León</h1>
-        <p class="tagline">
-          <span data-lang="es">Donde la gestión empresarial se encuentra con la tecnología</span>
-          <span data-lang="en">Where business management meets technology</span>
-        </p>
-        <p class="intro">
-          <span data-lang="es">Profesional en administración de empresas con una convicción: la buena gestión y la tecnología no son mundos separados. Diseño e integro soluciones que hacen que las organizaciones funcionen mejor.</span>
-          <span data-lang="en">Business administration professional with one conviction: good management and technology are not separate worlds. I design and integrate solutions that make organizations work better.</span>
-        </p>
-        <div class="hero-links">
-          <a class="btn btn-primary" href="#contacto">
-            <span data-lang="es">Hablemos</span>
-            <span data-lang="en">Let's talk</span>
-          </a>
-          <a class="btn btn-ghost" href="#proyectos">
-            <span data-lang="es">Ver proyectos</span>
-            <span data-lang="en">View projects</span>
-          </a>
+        <div class="hero-body">
+          <h1>Douglas de León</h1>
+          <div class="role-line">
+            <svg class="verified" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.6 3.8A2.5 2.5 0 0 1 10.5 3h3a2.5 2.5 0 0 1 1.9.8l1 1.2 1.6.3a2.5 2.5 0 0 1 2 2l.3 1.6 1.1 1.1a2.5 2.5 0 0 1 0 3.4l-1 1.2-.3 1.6a2.5 2.5 0 0 1-2 2l-1.6.3-1.1 1.1a2.5 2.5 0 0 1-3.4 0l-1.2-1-1.6-.3a2.5 2.5 0 0 1-2-2l-.3-1.6-1.1-1.1a2.5 2.5 0 0 1 0-3.4l1-1.2.3-1.6a2.5 2.5 0 0 1 2-2l1.6-.3 1.1-1.1Zm7.6 6.4a1 1 0 0 0-1.4-1.4L11 12.6l-1.8-1.8a1 1 0 0 0-1.4 1.4l2.5 2.5a1 1 0 0 0 1.4 0l4.5-4.5Z" clip-rule="evenodd"/></svg>
+            <span data-lang="es">Administración de empresas · Tecnología aplicada</span>
+            <span data-lang="en">Business administration · Applied technology</span>
+          </div>
+          <div class="icon-row">
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
+            </a>
+            <a href="https://github.com/Dxa17" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+            </a>
+            <a href="mailto:douglasjaviera17@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 7 9-7"/></svg>
+            </a>
+          </div>
+          <p class="bio">
+            <span data-lang="es">Profesional en administración de empresas con una convicción: la buena gestión y la tecnología no son mundos separados. Diseño e integro soluciones — plataformas LMS, análisis de datos, bases de datos — que hacen que las organizaciones funcionen mejor.</span>
+            <span data-lang="en">Business administration professional with one conviction: good management and technology are not separate worlds. I design and integrate solutions — LMS platforms, data analytics, databases — that make organizations work better.</span>
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:douglasjaviera17@gmail.com">
+              <span data-lang="es">Escríbeme</span>
+              <span data-lang="en">Email me</span>
+            </a>
+            <a class="btn btn-ghost" href="#proyectos">
+              <span data-lang="es">Ver proyectos</span>
+              <span data-lang="en">View projects</span>
+            </a>
+          </div>
+          <div class="chips">
+            <span class="chip" data-lang="es">Gestión de proyectos</span>
+            <span class="chip" data-lang="en">Project management</span>
+            <span class="chip" data-lang="es">Análisis de datos</span>
+            <span class="chip" data-lang="en">Data analysis</span>
+            <span class="chip">LMS</span>
+            <span class="chip" data-lang="es">Bases de datos</span>
+            <span class="chip" data-lang="en">Databases</span>
+            <span class="chip" data-lang="es">Procesos</span>
+            <span class="chip" data-lang="en">Processes</span>
+          </div>
         </div>
       </div>
 
-      <section id="sobre-mi">
-        <p class="eyebrow">
+      <!-- About -->
+      <div class="card card-pad">
+        <h2>
           <span data-lang="es">Sobre mí</span>
           <span data-lang="en">About me</span>
+        </h2>
+        <p style="color: var(--text-soft); font-size: 0.95rem;">
+          <span data-lang="es">Soy técnico en administración de empresas, próximo a obtener la licenciatura, y me muevo con la misma naturalidad entre un plan operativo y una plataforma tecnológica. He liderado proyectos de integración de sistemas LMS, plataformas de análisis de datos y bases de datos construidas desde cero — siempre con la mirada puesta en que la tecnología sirva a la estrategia del negocio, y no al revés.</span>
+          <span data-lang="en">I hold a technical degree in business administration — soon completing my bachelor's — and I move just as comfortably between an operations plan and a technology platform. I've led projects involving LMS system integration, data analytics platforms, and databases built from scratch — always making sure technology serves business strategy, not the other way around.</span>
         </p>
-        <div class="prose">
-          <p data-lang="es">
-            Soy técnico en <strong>administración de empresas</strong>, próximo a obtener la licenciatura, y me muevo con la misma naturalidad entre un plan operativo y una plataforma tecnológica. He liderado proyectos de <strong>integración de sistemas LMS</strong>, <strong>plataformas de análisis de datos</strong> y <strong>bases de datos construidas desde cero</strong> — siempre con la mirada puesta en que la tecnología sirva a la estrategia del negocio, y no al revés.
-          </p>
-          <p data-lang="en">
-            I hold a technical degree in <strong>business administration</strong> — soon completing my bachelor's — and I move just as comfortably between an operations plan and a technology platform. I've led projects involving <strong>LMS system integration</strong>, <strong>data analysis platforms</strong>, and <strong>databases built from scratch</strong> — always making sure technology serves business strategy, not the other way around.
-          </p>
-        </div>
-      </section>
+      </div>
 
-      <section id="areas">
-        <p class="eyebrow">
+      <!-- Areas -->
+      <div class="card card-pad">
+        <h2>
           <span data-lang="es">Áreas de trabajo</span>
           <span data-lang="en">What I do</span>
-        </p>
-        <div class="grid">
-          <div class="card">
-            <span class="icon">📊</span>
+        </h2>
+        <div class="area">
+          <div class="area-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+          </div>
+          <div>
             <h3>
               <span data-lang="es">Gestión empresarial</span>
               <span data-lang="en">Business management</span>
@@ -217,8 +296,12 @@
               <span data-lang="en">Administration, processes and organization focused on measurable results.</span>
             </p>
           </div>
-          <div class="card">
-            <span class="icon">⚙️</span>
+        </div>
+        <div class="area">
+          <div class="area-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
             <h3>
               <span data-lang="es">Tecnología aplicada</span>
               <span data-lang="en">Applied technology</span>
@@ -228,8 +311,12 @@
               <span data-lang="en">Implementation of LMS platforms, data tools and management systems.</span>
             </p>
           </div>
-          <div class="card">
-            <span class="icon">🔗</span>
+        </div>
+        <div class="area">
+          <div class="area-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5V12c0 1.66 3.58 3 8 3s8-1.34 8-3V5.5"/><path d="M4 12v6.5c0 1.66 3.58 3 8 3s8-1.34 8-3V12"/></svg>
+          </div>
+          <div>
             <h3>
               <span data-lang="es">Integración de proyectos</span>
               <span data-lang="en">Project integration</span>
@@ -240,99 +327,130 @@
             </p>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section id="proyectos">
-        <p class="eyebrow">
+      <!-- Projects -->
+      <div class="card card-pad" id="proyectos">
+        <h2>
           <span data-lang="es">Proyectos destacados</span>
           <span data-lang="en">Featured projects</span>
-        </p>
+        </h2>
         <div class="project">
-          <div class="dot"></div>
-          <div>
+          <div class="project-head">
             <h3>
               <span data-lang="es">Integración de plataforma LMS</span>
               <span data-lang="en">LMS platform integration</span>
             </h3>
-            <p>
-              <span data-lang="es">Implementación y puesta en marcha de un sistema de gestión de aprendizaje, desde la configuración hasta la adopción por parte de los usuarios.</span>
-              <span data-lang="en">Implementation and rollout of a learning management system, from configuration to user adoption.</span>
-            </p>
-            <div class="tags">
-              <span class="tag">LMS</span>
-              <span class="tag">E-learning</span>
-              <span class="tag" data-lang="es">Gestión del cambio</span>
-              <span class="tag" data-lang="en">Change management</span>
-            </div>
+            <span class="project-type">E-learning</span>
+          </div>
+          <p>
+            <span data-lang="es">Implementación y puesta en marcha de un sistema de gestión de aprendizaje, desde la configuración hasta la adopción por parte de los usuarios.</span>
+            <span data-lang="en">Implementation and rollout of a learning management system, from configuration to user adoption.</span>
+          </p>
+          <div class="tags">
+            <span class="tag">LMS</span>
+            <span class="tag" data-lang="es">Gestión del cambio</span>
+            <span class="tag" data-lang="en">Change management</span>
+            <span class="tag" data-lang="es">Capacitación</span>
+            <span class="tag" data-lang="en">Training</span>
           </div>
         </div>
         <div class="project">
-          <div class="dot"></div>
-          <div>
+          <div class="project-head">
             <h3>
               <span data-lang="es">Plataforma de análisis de datos</span>
-              <span data-lang="en">Data analysis platform</span>
+              <span data-lang="en">Data analytics platform</span>
             </h3>
-            <p>
-              <span data-lang="es">Desarrollo de una solución de análisis para convertir datos operativos en información útil para la toma de decisiones.</span>
-              <span data-lang="en">Development of an analytics solution turning operational data into actionable insights for decision-making.</span>
-            </p>
-            <div class="tags">
-              <span class="tag" data-lang="es">Análisis de datos</span>
-              <span class="tag" data-lang="en">Data analysis</span>
-              <span class="tag">Dashboards</span>
-              <span class="tag">KPIs</span>
-            </div>
+            <span class="project-type">Data</span>
+          </div>
+          <p>
+            <span data-lang="es">Desarrollo de una solución de análisis para convertir datos operativos en información útil para la toma de decisiones.</span>
+            <span data-lang="en">Development of an analytics solution turning operational data into actionable insights for decision-making.</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Dashboards</span>
+            <span class="tag">KPIs</span>
+            <span class="tag" data-lang="es">Análisis de datos</span>
+            <span class="tag" data-lang="en">Data analysis</span>
           </div>
         </div>
         <div class="project">
-          <div class="dot"></div>
-          <div>
+          <div class="project-head">
             <h3>
               <span data-lang="es">Bases de datos desde cero</span>
               <span data-lang="en">Databases from scratch</span>
             </h3>
-            <p>
-              <span data-lang="es">Diseño e integración de bases de datos para centralizar información dispersa y ordenar los procesos de la organización.</span>
-              <span data-lang="en">Design and integration of databases to centralize scattered information and streamline organizational processes.</span>
-            </p>
-            <div class="tags">
-              <span class="tag" data-lang="es">Bases de datos</span>
-              <span class="tag" data-lang="en">Databases</span>
-              <span class="tag" data-lang="es">Integración</span>
-              <span class="tag" data-lang="en">Integration</span>
-              <span class="tag" data-lang="es">Procesos</span>
-              <span class="tag" data-lang="en">Processes</span>
+            <span class="project-type">
+              <span data-lang="es">Integración</span>
+              <span data-lang="en">Integration</span>
+            </span>
+          </div>
+          <p>
+            <span data-lang="es">Diseño e integración de bases de datos para centralizar información dispersa y ordenar los procesos de la organización.</span>
+            <span data-lang="en">Design and integration of databases to centralize scattered information and streamline organizational processes.</span>
+          </p>
+          <div class="tags">
+            <span class="tag" data-lang="es">Bases de datos</span>
+            <span class="tag" data-lang="en">Databases</span>
+            <span class="tag" data-lang="es">Procesos</span>
+            <span class="tag" data-lang="en">Processes</span>
+            <span class="tag" data-lang="es">Automatización</span>
+            <span class="tag" data-lang="en">Automation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="card card-pad" id="contacto">
+        <h2>
+          <span data-lang="es">Encuéntrame en</span>
+          <span data-lang="en">Find me on</span>
+        </h2>
+        <a class="contact-row" href="mailto:douglasjaviera17@gmail.com">
+          <div class="contact-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 7 9-7"/></svg>
+          </div>
+          <div>
+            <div class="contact-name">Email</div>
+            <div class="contact-url">douglasjaviera17@gmail.com</div>
+          </div>
+          <div class="contact-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </div>
+        </a>
+        <a class="contact-row" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+          <div class="contact-ic">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
+          </div>
+          <div>
+            <div class="contact-name">LinkedIn</div>
+            <div class="contact-url">
+              <span data-lang="es">Perfil profesional</span>
+              <span data-lang="en">Professional profile</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section id="contacto">
-        <div class="contact-box">
-          <h2>
-            <span data-lang="es">¿Trabajamos juntos?</span>
-            <span data-lang="en">Let's work together</span>
-          </h2>
-          <p>
-            <span data-lang="es">Si tienes un proyecto donde la gestión y la tecnología se cruzan, me encantaría escucharlo.</span>
-            <span data-lang="en">If you have a project where management and technology intersect, I'd love to hear about it.</span>
-          </p>
-          <a class="btn" href="mailto:douglasjaviera17@gmail.com">
-            <span data-lang="es">Escríbeme</span>
-            <span data-lang="en">Email me</span>
-          </a>
-          <div class="socials">
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          <div class="contact-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </div>
-        </div>
-      </section>
+        </a>
+        <a class="contact-row" href="https://github.com/Dxa17" target="_blank" rel="noopener">
+          <div class="contact-ic">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+          </div>
+          <div>
+            <div class="contact-name">GitHub</div>
+            <div class="contact-url">github.com/Dxa17</div>
+          </div>
+          <div class="contact-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </div>
+        </a>
+      </div>
     </main>
 
     <footer>
-      <span data-lang="es">© 2026 Douglas de León · douglasdeleon.com</span>
-      <span data-lang="en">© 2026 Douglas de León · douglasdeleon.com</span>
+      <span data-lang="es">© 2026 <a href="#">Douglas de León</a> · douglasdeleon.com</span>
+      <span data-lang="en">© 2026 <a href="#">Douglas de León</a> · douglasdeleon.com</span>
     </footer>
   </div>
 
