@@ -10,8 +10,8 @@
   <meta property="og:url" content="https://me.douglasdeleon.com">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://me.douglasdeleon.com/img3.jpg">
-  <meta name="theme-color" content="#f2f5f7">
-  <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%232c4a66"/><stop offset="1" stop-color="%2352789b"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><text x="32" y="46" font-family="Georgia,serif" font-size="40" fill="white" text-anchor="middle">D</text></svg>'>
+  <meta name="theme-color" content="#1a3fb8">
+  <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%232563eb"/><stop offset="1" stop-color="%237db2fb"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><text x="32" y="46" font-family="Georgia,serif" font-size="40" fill="white" text-anchor="middle">D</text></svg>'>
   <link rel="preload" as="image" href="img3.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,8 @@
       --ink: #17222d;
       --slate: #57646f;
       --mist: #7f8d99;
-      --teal: #35617f;
-      --steel: #52789b;
+      --teal: #2557d6;
+      --steel: #4f8df9;
       --hair: #e6eaee;
       --card: #ffffff;
       --grad: linear-gradient(90deg, var(--teal), var(--steel));
@@ -32,9 +32,9 @@
     html { scroll-behavior: smooth; }
     body {
       background:
-        radial-gradient(60rem 40rem at 100% 0%, rgba(82,120,155,.09), transparent 55%),
-        radial-gradient(50rem 36rem at 0% 100%, rgba(53,97,127,.10), transparent 55%),
-        linear-gradient(165deg, #f5f7f9 0%, #eaeff3 100%) fixed;
+        radial-gradient(70rem 45rem at 100% -5%, rgba(255,255,255,.16), transparent 55%),
+        radial-gradient(55rem 38rem at -10% 105%, rgba(13,28,90,.35), transparent 60%),
+        linear-gradient(170deg, #1a3fb8 0%, #2563eb 55%, #3b82f6 100%) fixed;
       color: var(--ink);
       font-family: 'Instrument Sans', system-ui, sans-serif;
       font-size: 16.5px;
@@ -42,7 +42,7 @@
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
     }
-    ::selection { background: rgba(53,97,127,.16); }
+    ::selection { background: rgba(37,87,214,.16); }
     body::after {
       content: ''; position: fixed; inset: 0; z-index: 2147483647; pointer-events: none;
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="180" height="180" filter="url(%23n)"/></svg>');
@@ -52,29 +52,24 @@
     main { transition: opacity .18s ease; }
     body.switching main { opacity: 0; }
 
-    /* ---- Top bar ---- */
-    .topbar {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 22px 6px 24px;
-    }
-    .mark {
-      text-decoration: none; color: var(--ink);
-      font-family: 'Instrument Serif', serif; font-size: 1.2rem; letter-spacing: 0.01em;
-    }
-    .mark em { font-style: italic; color: var(--teal); }
+    /* ---- Language switch (over the cover) ---- */
+    main { padding-top: 34px; }
     .lang-switch {
-      display: flex; gap: 2px; background: rgba(23,34,45,.07); border-radius: 999px; padding: 3px;
+      position: absolute; top: 16px; right: 16px; z-index: 2;
+      display: flex; gap: 2px; background: rgba(255,255,255,.18); border-radius: 999px; padding: 3px;
+      backdrop-filter: blur(8px);
     }
     .lang-switch button {
       border: 0; background: transparent; font: inherit; font-size: 0.74rem; font-weight: 600;
       letter-spacing: 0.06em; padding: 5px 14px; border-radius: 999px; cursor: pointer;
-      color: var(--mist); transition: all .2s;
+      color: rgba(255,255,255,.75); transition: all .2s;
     }
-    .lang-switch button.active { background: var(--ink); color: #fff; }
+    .lang-switch button.active { background: #fff; color: var(--ink); }
 
     /* ---- Cards ---- */
     .card {
       background: var(--card); border-radius: var(--radius);
+      position: relative;
       border: 1px solid rgba(23,34,45,.06);
       box-shadow: 0 1px 2px rgba(23,34,45,.05), 0 12px 30px rgba(23,34,45,.09);
       margin-bottom: 20px; overflow: hidden;
@@ -99,7 +94,7 @@
     /* ---- Hero card ---- */
     .cover {
       height: 158px; position: relative; overflow: hidden;
-      background: linear-gradient(115deg, #16283a 0%, #2c4a66 55%, #52789b 115%);
+      background: linear-gradient(115deg, #142a6e 0%, #2563eb 60%, #7db2fb 118%);
     }
     .cover::before {
       content: ''; position: absolute; inset: -30%;
@@ -190,7 +185,7 @@
 
     footer {
       padding: 14px 6px 44px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-      color: var(--mist); font-size: 0.8rem;
+      color: rgba(255,255,255,.72); font-size: 0.8rem;
     }
 
     /* ---- Language toggle ---- */
@@ -224,23 +219,19 @@
 <body>
   <div class="shell">
 
-    <div class="topbar">
-      <a class="mark" href="#">Douglas <em>de León</em></a>
-      <div class="lang-switch" role="group" aria-label="Idioma / Language">
-        <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
-        <button id="btn-en" onclick="setLang('en')">EN</button>
-      </div>
-    </div>
-
     <main>
       <!-- Hero -->
       <div class="card rise">
         <div class="cover"></div>
+        <div class="lang-switch" role="group" aria-label="Idioma / Language">
+          <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+          <button id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
         <img class="avatar" src="img3.jpg" alt="Douglas de León">
         <div class="hero-body">
           <h1>Douglas de León</h1>
           <div class="role-line">
-            <svg class="verified" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m8.2 12.4 2.6 2.6 5-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="verified" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/></svg>
             <span data-lang="es">Gestión · Tecnología · Datos</span>
             <span data-lang="en">Management · Technology · Data</span>
           </div>
