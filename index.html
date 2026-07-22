@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Douglas de León — Gestión & Tecnología</title>
+  <meta name="description" content="Douglas de León — profesional en administración de empresas con enfoque en tecnología: integración de plataformas, análisis de datos y gestión de proyectos.">
+  <meta property="og:title" content="Douglas de León">
+  <meta property="og:description" content="Donde la gestión empresarial se encuentra con la tecnología.">
+  <meta property="og:url" content="https://douglasdeleon.com">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf9f7;
+      --surface: #ffffff;
+      --text: #1c1b1a;
+      --text-soft: #57534e;
+      --text-faint: #a8a29e;
+      --accent: #1d4ed8;
+      --line: #e7e5e4;
+      --radius: 16px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---- Header ---- */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px 0;
+    }
+    .brand {
+      font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem;
+      letter-spacing: 0.01em; color: var(--text); text-decoration: none;
+    }
+    .lang-switch {
+      display: flex; gap: 2px; background: var(--line); border-radius: 999px; padding: 3px;
+    }
+    .lang-switch button {
+      border: 0; background: transparent; font: inherit; font-size: 0.8rem; font-weight: 600;
+      padding: 4px 14px; border-radius: 999px; cursor: pointer; color: var(--text-soft);
+      transition: all .2s;
+    }
+    .lang-switch button.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+
+    /* ---- Hero ---- */
+    .hero { padding: 72px 0 64px; text-align: center; }
+    .avatar {
+      width: 112px; height: 112px; border-radius: 50%;
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 500;
+      margin: 0 auto 28px; letter-spacing: 0.02em;
+      box-shadow: 0 12px 32px rgba(29, 78, 216, .25);
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif; font-weight: 600;
+      font-size: clamp(2.2rem, 6vw, 3.1rem); line-height: 1.15; letter-spacing: -0.01em;
+    }
+    .tagline {
+      margin-top: 14px; font-size: 1.15rem; color: var(--text-soft); font-weight: 500;
+    }
+    .intro {
+      margin: 22px auto 0; max-width: 540px; color: var(--text-soft); font-size: 1rem;
+    }
+    .hero-links { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px; border-radius: 999px; text-decoration: none;
+      font-size: 0.92rem; font-weight: 600; transition: all .2s;
+    }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+    .btn-ghost { border: 1.5px solid var(--line); color: var(--text); background: var(--surface); }
+    .btn-ghost:hover { border-color: var(--text-faint); transform: translateY(-2px); }
+
+    /* ---- Sections ---- */
+    section { padding: 56px 0; border-top: 1px solid var(--line); }
+    .eyebrow {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 18px;
+    }
+    .prose { color: var(--text-soft); max-width: 620px; }
+    .prose strong { color: var(--text); font-weight: 600; }
+
+    /* ---- Areas ---- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 26px 24px; transition: all .25s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.07); }
+    .card .icon { font-size: 1.5rem; margin-bottom: 14px; display: block; }
+    .card h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 8px; }
+    .card p { font-size: 0.9rem; color: var(--text-soft); line-height: 1.6; }
+
+    /* ---- Projects ---- */
+    .project {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid var(--line);
+    }
+    .project:last-child { border-bottom: 0; }
+    .project .dot {
+      flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); margin-top: 10px;
+    }
+    .project h3 { font-size: 1.05rem; font-weight: 600; }
+    .project p { color: var(--text-soft); font-size: 0.95rem; margin-top: 6px; }
+    .tags { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.74rem; font-weight: 600; padding: 3px 12px; border-radius: 999px;
+      background: var(--line); color: var(--text-soft);
+    }
+
+    /* ---- Contact ---- */
+    .contact-box {
+      background: var(--text); color: var(--bg); border-radius: 24px;
+      padding: 48px 40px; text-align: center;
+    }
+    .contact-box h2 { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 600; }
+    .contact-box p { margin-top: 10px; opacity: 0.75; font-size: 0.98rem; }
+    .contact-box .btn { background: var(--bg); color: var(--text); margin-top: 26px; }
+    .socials { margin-top: 22px; display: flex; gap: 20px; justify-content: center; }
+    .socials a { color: var(--bg); opacity: 0.65; text-decoration: none; font-size: 0.88rem; font-weight: 500; }
+    .socials a:hover { opacity: 1; }
+
+    footer {
+      padding: 40px 0 48px; text-align: center;
+      color: var(--text-faint); font-size: 0.82rem;
+    }
+
+    [data-lang="en"] { display: none; }
+    html.en [data-lang="en"] { display: revert; }
+    html.en [data-lang="es"] { display: none; }
+
+    @media (max-width: 560px) {
+      .hero { padding: 48px 0 48px; }
+      .contact-box { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <a class="brand" href="#">douglasdeleon.com</a>
+      <div class="lang-switch" role="group" aria-label="Idioma / Language">
+        <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="avatar">DL</div>
+        <h1>Douglas de León</h1>
+        <p class="tagline">
+          <span data-lang="es">Donde la gestión empresarial se encuentra con la tecnología</span>
+          <span data-lang="en">Where business management meets technology</span>
+        </p>
+        <p class="intro">
+          <span data-lang="es">Profesional en administración de empresas con una convicción: la buena gestión y la tecnología no son mundos separados. Diseño e integro soluciones que hacen que las organizaciones funcionen mejor.</span>
+          <span data-lang="en">Business administration professional with one conviction: good management and technology are not separate worlds. I design and integrate solutions that make organizations work better.</span>
+        </p>
+        <div class="hero-links">
+          <a class="btn btn-primary" href="#contacto">
+            <span data-lang="es">Hablemos</span>
+            <span data-lang="en">Let's talk</span>
+          </a>
+          <a class="btn btn-ghost" href="#proyectos">
+            <span data-lang="es">Ver proyectos</span>
+            <span data-lang="en">View projects</span>
+          </a>
+        </div>
+      </div>
+
+      <section id="sobre-mi">
+        <p class="eyebrow">
+          <span data-lang="es">Sobre mí</span>
+          <span data-lang="en">About me</span>
+        </p>
+        <div class="prose">
+          <p data-lang="es">
+            Soy técnico en <strong>administración de empresas</strong>, próximo a obtener la licenciatura, y me muevo con la misma naturalidad entre un plan operativo y una plataforma tecnológica. He liderado proyectos de <strong>integración de sistemas LMS</strong>, <strong>plataformas de análisis de datos</strong> y <strong>bases de datos construidas desde cero</strong> — siempre con la mirada puesta en que la tecnología sirva a la estrategia del negocio, y no al revés.
+          </p>
+          <p data-lang="en">
+            I hold a technical degree in <strong>business administration</strong> — soon completing my bachelor's — and I move just as comfortably between an operations plan and a technology platform. I've led projects involving <strong>LMS system integration</strong>, <strong>data analysis platforms</strong>, and <strong>databases built from scratch</strong> — always making sure technology serves business strategy, not the other way around.
+          </p>
+        </div>
+      </section>
+
+      <section id="areas">
+        <p class="eyebrow">
+          <span data-lang="es">Áreas de trabajo</span>
+          <span data-lang="en">What I do</span>
+        </p>
+        <div class="grid">
+          <div class="card">
+            <span class="icon">📊</span>
+            <h3>
+              <span data-lang="es">Gestión empresarial</span>
+              <span data-lang="en">Business management</span>
+            </h3>
+            <p>
+              <span data-lang="es">Administración, procesos y organización con enfoque en resultados medibles.</span>
+              <span data-lang="en">Administration, processes and organization focused on measurable results.</span>
+            </p>
+          </div>
+          <div class="card">
+            <span class="icon">⚙️</span>
+            <h3>
+              <span data-lang="es">Tecnología aplicada</span>
+              <span data-lang="en">Applied technology</span>
+            </h3>
+            <p>
+              <span data-lang="es">Implementación de plataformas LMS, herramientas de datos y sistemas de gestión.</span>
+              <span data-lang="en">Implementation of LMS platforms, data tools and management systems.</span>
+            </p>
+          </div>
+          <div class="card">
+            <span class="icon">🔗</span>
+            <h3>
+              <span data-lang="es">Integración de proyectos</span>
+              <span data-lang="en">Project integration</span>
+            </h3>
+            <p>
+              <span data-lang="es">Proyectos desde cero: bases de datos, flujos de información y conexión entre sistemas.</span>
+              <span data-lang="en">Projects from scratch: databases, information flows and connecting systems.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="proyectos">
+        <p class="eyebrow">
+          <span data-lang="es">Proyectos destacados</span>
+          <span data-lang="en">Featured projects</span>
+        </p>
+        <div class="project">
+          <div class="dot"></div>
+          <div>
+            <h3>
+              <span data-lang="es">Integración de plataforma LMS</span>
+              <span data-lang="en">LMS platform integration</span>
+            </h3>
+            <p>
+              <span data-lang="es">Implementación y puesta en marcha de un sistema de gestión de aprendizaje, desde la configuración hasta la adopción por parte de los usuarios.</span>
+              <span data-lang="en">Implementation and rollout of a learning management system, from configuration to user adoption.</span>
+            </p>
+            <div class="tags">
+              <span class="tag">LMS</span>
+              <span class="tag">E-learning</span>
+              <span class="tag" data-lang="es">Gestión del cambio</span>
+              <span class="tag" data-lang="en">Change management</span>
+            </div>
+          </div>
+        </div>
+        <div class="project">
+          <div class="dot"></div>
+          <div>
+            <h3>
+              <span data-lang="es">Plataforma de análisis de datos</span>
+              <span data-lang="en">Data analysis platform</span>
+            </h3>
+            <p>
+              <span data-lang="es">Desarrollo de una solución de análisis para convertir datos operativos en información útil para la toma de decisiones.</span>
+              <span data-lang="en">Development of an analytics solution turning operational data into actionable insights for decision-making.</span>
+            </p>
+            <div class="tags">
+              <span class="tag" data-lang="es">Análisis de datos</span>
+              <span class="tag" data-lang="en">Data analysis</span>
+              <span class="tag">Dashboards</span>
+              <span class="tag">KPIs</span>
+            </div>
+          </div>
+        </div>
+        <div class="project">
+          <div class="dot"></div>
+          <div>
+            <h3>
+              <span data-lang="es">Bases de datos desde cero</span>
+              <span data-lang="en">Databases from scratch</span>
+            </h3>
+            <p>
+              <span data-lang="es">Diseño e integración de bases de datos para centralizar información dispersa y ordenar los procesos de la organización.</span>
+              <span data-lang="en">Design and integration of databases to centralize scattered information and streamline organizational processes.</span>
+            </p>
+            <div class="tags">
+              <span class="tag" data-lang="es">Bases de datos</span>
+              <span class="tag" data-lang="en">Databases</span>
+              <span class="tag" data-lang="es">Integración</span>
+              <span class="tag" data-lang="en">Integration</span>
+              <span class="tag" data-lang="es">Procesos</span>
+              <span class="tag" data-lang="en">Processes</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <div class="contact-box">
+          <h2>
+            <span data-lang="es">¿Trabajamos juntos?</span>
+            <span data-lang="en">Let's work together</span>
+          </h2>
+          <p>
+            <span data-lang="es">Si tienes un proyecto donde la gestión y la tecnología se cruzan, me encantaría escucharlo.</span>
+            <span data-lang="en">If you have a project where management and technology intersect, I'd love to hear about it.</span>
+          </p>
+          <a class="btn" href="mailto:douglasjaviera17@gmail.com">
+            <span data-lang="es">Escríbeme</span>
+            <span data-lang="en">Email me</span>
+          </a>
+          <div class="socials">
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span data-lang="es">© 2026 Douglas de León · douglasdeleon.com</span>
+      <span data-lang="en">© 2026 Douglas de León · douglasdeleon.com</span>
+    </footer>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.documentElement.classList.toggle('en', lang === 'en');
+      document.documentElement.lang = lang;
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('lang'); } catch (e) {}
+      var lang = saved || (navigator.language && navigator.language.startsWith('es') ? 'es' : 'en');
+      setLang(lang);
+    })();
+  </script>
+</body>
+</html>
