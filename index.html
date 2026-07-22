@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -10,6 +10,9 @@
   <meta property="og:url" content="https://me.douglasdeleon.com">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://me.douglasdeleon.com/img3.jpg">
+  <meta name="theme-color" content="#13202e">
+  <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%230f7a6d"/><stop offset="1" stop-color="%2341668f"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><text x="32" y="46" font-family="Georgia,serif" font-size="40" fill="white" text-anchor="middle">D</text></svg>'>
+  <link rel="preload" as="image" href="img3.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
@@ -17,7 +20,7 @@
     :root {
       --ink: #17222d;
       --slate: #57646f;
-      --mist: #97a3ad;
+      --mist: #7f8d99;
       --teal: #0f7a6d;
       --steel: #41668f;
       --hair: #e6eaee;
@@ -40,7 +43,14 @@
       min-height: 100vh;
     }
     ::selection { background: rgba(15,122,109,.18); }
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 2147483647; pointer-events: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="180" height="180" filter="url(%23n)"/></svg>');
+      opacity: 0.035;
+    }
     .shell { max-width: 690px; margin: 0 auto; padding: 0 18px; }
+    main { transition: opacity .18s ease; }
+    body.switching main { opacity: 0; }
 
     /* ---- Top bar ---- */
     .topbar {
@@ -69,6 +79,13 @@
       background: var(--card); border-radius: var(--radius);
       box-shadow: 0 1px 2px rgba(8,16,24,.14), 0 14px 36px rgba(8,16,24,.26);
       margin-bottom: 20px; overflow: hidden;
+      transition: transform .3s cubic-bezier(.2,.65,.3,1), box-shadow .3s;
+    }
+    @media (hover: hover) {
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 2px 4px rgba(8,16,24,.14), 0 22px 48px rgba(8,16,24,.32);
+      }
     }
     .card-pad { padding: 28px 40px 34px; }
     .label {
@@ -82,10 +99,12 @@
 
     /* ---- Hero card ---- */
     .cover {
-      height: 158px; position: relative;
-      background:
-        radial-gradient(120% 170% at 88% -5%, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 46%),
-        linear-gradient(112deg, #142534 0%, #2a4d6b 46%, #0f7a6d 100%);
+      height: 158px; position: relative; overflow: hidden;
+      background: linear-gradient(112deg, #142534 0%, #2a4d6b 46%, #0f7a6d 100%);
+    }
+    .cover::before {
+      content: ''; position: absolute; inset: -30%;
+      background: radial-gradient(45% 60% at 70% 20%, rgba(255,255,255,.24) 0%, rgba(255,255,255,0) 60%);
     }
     .cover::after {
       content: ''; position: absolute; inset: 0;
@@ -97,9 +116,11 @@
     .avatar {
       width: 128px; height: 128px; border-radius: 50%;
       border: 5px solid #fff; object-fit: cover; object-position: 50% 22%;
-      margin: -68px 0 0 40px; position: relative; display: block;
+      margin: -68px 0 0 40px; position: relative; display: block; z-index: 1;
       box-shadow: 0 6px 20px rgba(8,16,24,.24);
+      transition: transform .35s cubic-bezier(.2,.65,.3,1);
     }
+    @media (hover: hover) { .avatar:hover { transform: scale(1.045); } }
     .hero-body { padding: 18px 40px 36px; }
     .hero-body h1 {
       font-family: 'Instrument Serif', serif; font-weight: 400;
@@ -189,10 +210,14 @@
     @media (prefers-reduced-motion: no-preference) {
       .rise { opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.2,.65,.3,1) forwards; }
       .rise-2 { animation-delay: .1s; }
-      .rise-3 { animation-delay: .2s; }
-      .rise-4 { animation-delay: .3s; }
-      .rise-5 { animation-delay: .4s; }
       @keyframes rise { to { opacity: 1; transform: none; } }
+      .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.65,.3,1); }
+      .reveal.in { opacity: 1; transform: none; }
+      .cover::before { animation: drift 16s ease-in-out infinite alternate; }
+      @keyframes drift {
+        from { transform: translate(0%, 0%) scale(1); }
+        to   { transform: translate(-14%, 10%) scale(1.15); }
+      }
     }
 
     @media (max-width: 560px) {
@@ -253,7 +278,7 @@
       </div>
 
       <!-- Perfil -->
-      <div class="card card-pad rise rise-2">
+      <div class="card card-pad reveal">
         <p class="label">
           <span data-lang="es">Perfil</span>
           <span data-lang="en">Profile</span>
@@ -269,7 +294,7 @@
       </div>
 
       <!-- Lo que me mueve -->
-      <div class="card card-pad rise rise-3">
+      <div class="card card-pad reveal">
         <p class="label">
           <span data-lang="es">Lo que me mueve</span>
           <span data-lang="en">What drives me</span>
@@ -319,7 +344,7 @@
       </div>
 
       <!-- Ahora -->
-      <div class="card card-pad rise rise-4">
+      <div class="card card-pad reveal">
         <p class="label">
           <span data-lang="es">Ahora</span>
           <span data-lang="en">Now</span>
@@ -350,7 +375,7 @@
       </div>
 
       <!-- Conecta -->
-      <div class="card card-pad rise rise-5">
+      <div class="card card-pad reveal">
         <p class="label">
           <span data-lang="es">Conecta</span>
           <span data-lang="en">Connect</span>
@@ -382,18 +407,36 @@
   </div>
 
   <script>
-    function setLang(lang) {
+    function applyLang(lang) {
       document.documentElement.classList.toggle('en', lang === 'en');
       document.documentElement.lang = lang;
       document.getElementById('btn-es').classList.toggle('active', lang === 'es');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       try { localStorage.setItem('lang', lang); } catch (e) {}
     }
+    function setLang(lang) {
+      if (document.documentElement.lang === lang) return;
+      document.body.classList.add('switching');
+      setTimeout(function () {
+        applyLang(lang);
+        document.body.classList.remove('switching');
+      }, 180);
+    }
     (function () {
       var saved = null;
       try { saved = localStorage.getItem('lang'); } catch (e) {}
-      var lang = saved || (navigator.language && navigator.language.startsWith('es') ? 'es' : 'en');
-      setLang(lang);
+      applyLang(saved || (navigator.language && navigator.language.startsWith('es') ? 'es' : 'en'));
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      } else {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+      }
     })();
   </script>
 </body>
