@@ -1,370 +1,112 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Douglas de León</title>
-  <meta name="description" content="Douglas de León — gestión y tecnología. Marca personal.">
+  <meta name="description" content="Douglas de León — administrador de empresas. Gestión, estrategia y decisiones apoyadas en datos.">
+  <link rel="canonical" href="https://me.douglasdeleon.com/">
   <meta property="og:title" content="Douglas de León">
-  <meta property="og:description" content="La gestión y la tecnología no son mundos separados.">
-  <meta property="og:url" content="https://me.douglasdeleon.com">
+  <meta property="og:description" content="Lo mío es administrar: entender un negocio y tomar buenas decisiones.">
+  <meta property="og:url" content="https://me.douglasdeleon.com/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://me.douglasdeleon.com/img3.jpg">
-  <meta name="theme-color" content="#2b4470">
-  <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%233a5f9e"/><stop offset="1" stop-color="%238aabd6"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><text x="32" y="46" font-family="Georgia,serif" font-size="40" fill="white" text-anchor="middle">D</text></svg>'>
-  <link rel="preload" as="image" href="img3.jpg">
+  <meta property="og:image:width" content="1948">
+  <meta property="og:image:height" content="2208">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#1a2c4e">
+  <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%2327456e"/><stop offset="1" stop-color="%238fb4e3"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><text x="32" y="46" font-family="Georgia,serif" font-size="40" fill="white" text-anchor="middle">D</text></svg>'>
+  <link rel="preload" as="image" href="avatar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --ink: #17222d;
-      --slate: #57646f;
-      --mist: #7f8d99;
-      --teal: #3a63a8;
-      --steel: #6b93c9;
-      --hair: #e6eaee;
-      --card: #ffffff;
-      --grad: linear-gradient(90deg, var(--teal), var(--steel));
-      --radius: 18px;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background:
-        radial-gradient(70rem 45rem at 100% -5%, rgba(255,255,255,.10), transparent 55%),
-        radial-gradient(55rem 38rem at -10% 105%, rgba(15,28,58,.30), transparent 60%),
-        linear-gradient(170deg, #2b4470 0%, #3a5f9e 55%, #4d74ad 100%) fixed;
-      color: var(--ink);
-      font-family: 'Instrument Sans', system-ui, sans-serif;
-      font-size: 16.5px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
-    ::selection { background: rgba(58,99,168,.16); }
-    body::after {
-      content: ''; position: fixed; inset: 0; z-index: 2147483647; pointer-events: none;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="180" height="180" filter="url(%23n)"/></svg>');
-      opacity: 0.028;
-    }
-    .shell { max-width: 690px; margin: 0 auto; padding: 0 18px; }
-    main { transition: opacity .18s ease; }
-    body.switching main { opacity: 0; }
-
-    /* ---- Language switch (over the cover) ---- */
-    main { padding-top: 34px; }
-    .lang-switch {
-      position: absolute; top: 16px; right: 16px; z-index: 2;
-      display: flex; gap: 2px; background: rgba(255,255,255,.18); border-radius: 999px; padding: 3px;
-      backdrop-filter: blur(8px);
-    }
-    .lang-switch button {
-      border: 0; background: transparent; font: inherit; font-size: 0.74rem; font-weight: 600;
-      letter-spacing: 0.06em; padding: 5px 14px; border-radius: 999px; cursor: pointer;
-      color: rgba(255,255,255,.75); transition: all .2s;
-    }
-    .lang-switch button.active { background: #fff; color: var(--ink); }
-
-    /* ---- Cards ---- */
-    .card {
-      background: var(--card); border-radius: var(--radius);
-      position: relative;
-      border: 1px solid rgba(23,34,45,.06);
-      box-shadow: 0 1px 2px rgba(23,34,45,.05), 0 12px 30px rgba(23,34,45,.09);
-      margin-bottom: 20px; overflow: hidden;
-      transition: transform .3s cubic-bezier(.2,.65,.3,1), box-shadow .3s;
-    }
-    @media (hover: hover) {
-      .card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 2px 4px rgba(23,34,45,.05), 0 20px 44px rgba(23,34,45,.13);
-      }
-    }
-    .card-pad { padding: 28px 40px 34px; }
-    .label {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--mist); margin-bottom: 18px;
-    }
-    .label::after {
-      content: ''; display: inline-block; width: 34px; height: 1.5px;
-      background: var(--grad); vertical-align: middle; margin-left: 12px; border-radius: 2px;
-    }
-
-    /* ---- Hero card ---- */
-    .cover {
-      height: 158px; position: relative; overflow: hidden;
-      background: linear-gradient(115deg, #1e3357 0%, #3a5f9e 60%, #8aabd6 120%);
-    }
-    .cover::before {
-      content: ''; position: absolute; inset: -30%;
-      background: radial-gradient(45% 60% at 70% 20%, rgba(255,255,255,.20) 0%, rgba(255,255,255,0) 60%);
-    }
-    .avatar {
-      width: 128px; height: 128px; border-radius: 50%;
-      border: 5px solid #fff; object-fit: cover; object-position: 50% 22%;
-      margin: -68px 0 0 40px; position: relative; display: block; z-index: 1;
-      box-shadow: 0 6px 20px rgba(8,16,24,.24);
-      transition: transform .35s cubic-bezier(.2,.65,.3,1);
-    }
-    @media (hover: hover) { .avatar:hover { transform: scale(1.045); } }
-    .hero-body { padding: 18px 40px 36px; }
-    .hero-body h1 {
-      font-family: 'Instrument Serif', serif; font-weight: 400;
-      font-size: clamp(2.1rem, 6vw, 2.8rem); letter-spacing: -0.01em; line-height: 1.08;
-    }
-    .role-line {
-      display: flex; align-items: center; gap: 8px; margin-top: 9px; flex-wrap: wrap;
-      color: var(--slate); font-size: 0.92rem; font-weight: 500; letter-spacing: 0.04em;
-    }
-    .verified { display: inline-flex; width: 19px; height: 19px; flex-shrink: 0; color: var(--teal); }
-    .thesis {
-      margin-top: 22px;
-      font-family: 'Instrument Serif', serif; font-size: 1.48rem; line-height: 1.38;
-      letter-spacing: -0.01em; text-wrap: balance;
-    }
-    .thesis em {
-      font-style: italic;
-      background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .bio { margin-top: 15px; color: var(--slate); font-size: 0.97rem; max-width: 54ch; }
-    .icon-row { display: flex; gap: 18px; margin-top: 24px; align-items: center; flex-wrap: wrap; }
-    .icon-row a {
-      color: var(--ink); opacity: 0.82; display: inline-flex; align-items: center; gap: 7px;
-      text-decoration: none; font-size: 0.88rem; font-weight: 600;
-      transition: all .15s;
-    }
-    .icon-row a:hover { opacity: 1; color: var(--teal); transform: translateY(-1px); }
-    .icon-row svg { width: 19px; height: 19px; }
-
-    /* ---- Perfil ---- */
-    .drop {
-      font-family: 'Instrument Serif', serif; font-size: 1.48rem; line-height: 1.4;
-      letter-spacing: -0.01em; text-wrap: balance;
-    }
-    .drop em {
-      font-style: italic;
-      background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .quiet { color: var(--slate); font-size: 0.97rem; margin-top: 16px; max-width: 60ch; }
-
-    /* ---- Lo que me mueve ---- */
-    .pulse { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 38px; }
-    .pulse-item { padding: 16px 0; border-bottom: 1px solid var(--hair); }
-    .pulse-item:nth-last-child(-n+2) { border-bottom: 0; padding-bottom: 4px; }
-    .pulse-item h3 {
-      font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 1.26rem;
-      letter-spacing: -0.01em;
-    }
-    .pulse-item p { margin-top: 4px; color: var(--slate); font-size: 0.9rem; }
-
-    /* ---- Ahora ---- */
-    .now-list { display: flex; flex-direction: column; gap: 14px; }
-    .now-item { display: flex; gap: 15px; align-items: baseline; }
-    .now-item .tick {
-      flex-shrink: 0; width: 20px; height: 1.5px; background: var(--grad);
-      border-radius: 2px; transform: translateY(-4px);
-    }
-    .now-item p { color: var(--ink); font-size: 0.98rem; }
-    .now-item p span.soft { color: var(--slate); }
-
-    /* ---- Conecta ---- */
-    .connect { display: flex; flex-direction: column; }
-    .connect a {
-      display: flex; align-items: center; gap: 18px;
-      padding: 15px 2px; border-bottom: 1px solid var(--hair);
-      text-decoration: none; color: var(--ink); transition: padding .2s ease;
-    }
-    .connect a:last-child { border-bottom: 0; padding-bottom: 4px; }
-    .connect a:hover { padding-left: 10px; }
-    .connect a:hover .where { color: var(--teal); }
-    .connect .where { font-family: 'Instrument Serif', serif; font-size: 1.24rem; transition: color .2s; min-width: 108px; }
-    .connect .handle { color: var(--mist); font-size: 0.88rem; }
-    .connect .arrow { margin-left: auto; color: var(--mist); display: inline-flex; }
-    .connect .arrow svg { width: 16px; height: 16px; }
-
-    footer {
-      padding: 14px 6px 44px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-      color: rgba(255,255,255,.72); font-size: 0.8rem;
-    }
-
-    /* ---- Language toggle ---- */
-    [data-lang="en"] { display: none; }
-    html.en [data-lang="en"] { display: revert; }
-    html.en [data-lang="es"] { display: none; }
-
-    /* ---- Motion ---- */
-    @media (prefers-reduced-motion: no-preference) {
-      .rise { opacity: 0; transform: translateY(16px); animation: rise .7s cubic-bezier(.2,.65,.3,1) forwards; }
-      .rise-2 { animation-delay: .1s; }
-      @keyframes rise { to { opacity: 1; transform: none; } }
-      .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.65,.3,1); }
-      .reveal.in { opacity: 1; transform: none; }
-      .cover::before { animation: drift 16s ease-in-out infinite alternate; }
-      @keyframes drift {
-        from { transform: translate(0%, 0%) scale(1); }
-        to   { transform: translate(-14%, 10%) scale(1.15); }
-      }
-    }
-
-    @media (max-width: 560px) {
-      .card-pad, .hero-body { padding-left: 26px; padding-right: 26px; }
-      .avatar { margin-left: 26px; width: 110px; height: 110px; margin-top: -58px; }
-      .cover { height: 128px; }
-      .pulse { grid-template-columns: 1fr; }
-      .pulse-item:nth-last-child(2) { border-bottom: 1px solid var(--hair); padding-bottom: 16px; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Douglas de León",
+    "url": "https://me.douglasdeleon.com/",
+    "image": "https://me.douglasdeleon.com/img3.jpg",
+    "email": "mailto:contacto@douglasdeleon.com",
+    "jobTitle": "Administrador de empresas",
+    "sameAs": ["https://www.linkedin.com/in/douglasdeleonjimenez/"]
+  }
+  </script>
 </head>
 <body>
-  <div class="shell">
-
-    <main>
-      <!-- Hero -->
-      <div class="card rise">
-        <div class="cover"></div>
-        <div class="lang-switch" role="group" aria-label="Idioma / Language">
-          <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
-          <button id="btn-en" onclick="setLang('en')">EN</button>
-        </div>
-        <img class="avatar" src="img3.jpg" alt="Douglas de León">
-        <div class="hero-body">
-          <h1>Douglas de León</h1>
-          <div class="role-line">
-            <svg class="verified" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/></svg>
-            <span data-lang="es">Gestión · Tecnología · Datos</span>
-            <span data-lang="en">Management · Technology · Data</span>
-          </div>
-          <p class="thesis">
-            <span data-lang="es">La gestión y la tecnología no son <em>mundos separados.</em></span>
-            <span data-lang="en">Management and technology are not <em>separate worlds.</em></span>
-          </p>
-          <p class="bio">
-            <span data-lang="es">Me muevo entre la administración de empresas y las plataformas tecnológicas, convencido de que las mejores ideas nacen justo en ese cruce.</span>
-            <span data-lang="en">I move between business administration and technology platforms, convinced that the best ideas are born right at that intersection.</span>
-          </p>
-          <div class="icon-row">
-            <a href="https://www.linkedin.com/in/douglasdeleonjimenez/" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
-              LinkedIn
-            </a>
-            <!-- GitHub oculto temporalmente; descomentar para reactivar
-            <a href="https://github.com/Dxa17" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
-              GitHub
-            </a>
-            -->
-            <a href="mailto:contacto@douglasdeleon.com">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 7 9-7"/></svg>
-              Email
-            </a>
-          </div>
-        </div>
+  <div class="frame">
+    <aside>
+      <div class="portrait rise">
+        <img class="avatar" src="avatar.jpg" width="320" height="363" alt="Douglas de León">
       </div>
-
-      <!-- Perfil -->
-      <div class="card card-pad reveal">
-        <p class="label">
-          <span data-lang="es">Perfil</span>
-          <span data-lang="en">Profile</span>
-        </p>
-        <p class="drop">
-          <span data-lang="es">Vengo del mundo de la administración, pero nunca me quedé <em>solo ahí.</em></span>
-          <span data-lang="en">I come from the world of business administration, but I never stayed <em>only there.</em></span>
-        </p>
-        <p class="quiet">
-          <span data-lang="es">Con formación en administración de empresas y la licenciatura en camino, aprendí que los procesos, los datos y las plataformas hablan el mismo idioma cuando alguien se toma el tiempo de traducirlos. Eso hago: entender cómo funciona una organización y darle forma con herramientas tecnológicas — plataformas de aprendizaje, análisis de datos, sistemas de información.</span>
-          <span data-lang="en">Trained in business administration — bachelor's degree on the way — I learned that processes, data and platforms speak the same language when someone takes the time to translate between them. That's what I do: understand how an organization works and shape it with technology — learning platforms, data analytics, information systems.</span>
-        </p>
+      <h1 class="rise rise-2">Douglas de León</h1>
+      <p class="role rise rise-2">Administración · Estrategia · Datos</p>
+      <nav class="side-nav rise rise-3" aria-label="Secciones">
+        <a href="#perfil">Perfil</a>
+        <a href="#mueve">Lo que me mueve</a>
+        <a href="#ahora">Ahora</a>
+        <a href="#conecta">Conecta</a>
+      </nav>
+      <div class="cta-row rise rise-4">
+        <a class="btn btn-primary" href="mailto:contacto@douglasdeleon.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 7 9-7"/></svg>
+          Escríbeme
+        </a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/douglasdeleonjimenez/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
+          LinkedIn
+        </a>
       </div>
+      <div class="side-bottom rise rise-4">
+        <p class="side-foot">© 2026 · douglasdeleon.com</p>
+      </div>
+    </aside>
 
-      <!-- Lo que me mueve -->
-      <div class="card card-pad reveal">
-        <p class="label">
-          <span data-lang="es">Lo que me mueve</span>
-          <span data-lang="en">What drives me</span>
-        </p>
+    <main class="rise rise-3">
+      <p class="thesis">Lo mío es administrar: entender un negocio y <em>tomar buenas decisiones.</em></p>
+      <p class="bio">Soy administrador de empresas. A la hora de gestionar y tomar decisiones, me apoyo en los datos y la tecnología.</p>
+
+      <section id="perfil">
+        <h2 class="label">Perfil</h2>
+        <p class="drop">Administrar es entender el negocio: <em>sus procesos, sus números y su gente.</em></p>
+        <p class="quiet">Estoy en la recta final de la licenciatura en administración de empresas. Me gusta entender cómo funciona una organización, armar estrategias y tomar decisiones bien pensadas. La tecnología y el manejo de datos son mi complemento: me dan la información que necesito para decidir con más seguridad.</p>
+      </section>
+
+      <section id="mueve">
+        <h2 class="label">Lo que me mueve</h2>
         <div class="pulse">
           <div class="pulse-item">
-            <h3>
-              <span data-lang="es">Datos que cuentan historias</span>
-              <span data-lang="en">Data that tells stories</span>
-            </h3>
-            <p>
-              <span data-lang="es">Un número suelto no dice nada; un dato en contexto cambia decisiones.</span>
-              <span data-lang="en">A lone number says nothing; data in context changes decisions.</span>
-            </p>
+            <h3>Decidir con información</h3>
+            <p>Prefiero tomar decisiones con datos en la mano, no solo por intuición.</p>
           </div>
           <div class="pulse-item">
-            <h3>
-              <span data-lang="es">Sistemas que ordenan el caos</span>
-              <span data-lang="en">Systems that tame chaos</span>
-            </h3>
-            <p>
-              <span data-lang="es">Me fascina convertir información dispersa en estructuras que fluyen.</span>
-              <span data-lang="en">I love turning scattered information into structures that flow.</span>
-            </p>
+            <h3>Primero el negocio</h3>
+            <p>Antes de hablar de herramientas, hay que entender qué necesita la empresa.</p>
           </div>
           <div class="pulse-item">
-            <h3>
-              <span data-lang="es">Tecnología con propósito</span>
-              <span data-lang="en">Technology with purpose</span>
-            </h3>
-            <p>
-              <span data-lang="es">Las herramientas importan cuando sirven a las personas, no al revés.</span>
-              <span data-lang="en">Tools matter when they serve people, not the other way around.</span>
-            </p>
+            <h3>Orden en la información</h3>
+            <p>Cuando la información está clara y ordenada, decidir se vuelve más fácil.</p>
           </div>
           <div class="pulse-item">
-            <h3>
-              <span data-lang="es">Aprender siempre</span>
-              <span data-lang="en">Always learning</span>
-            </h3>
-            <p>
-              <span data-lang="es">Cada proyecto es una excusa para entender algo nuevo a fondo.</span>
-              <span data-lang="en">Every project is an excuse to deeply understand something new.</span>
-            </p>
+            <h3>Seguir aprendiendo</h3>
+            <p>Cada proyecto me deja algo nuevo, y eso me gusta.</p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Ahora -->
-      <div class="card card-pad reveal">
-        <p class="label">
-          <span data-lang="es">Ahora</span>
-          <span data-lang="en">Now</span>
-        </p>
+      <section id="ahora">
+        <h2 class="label">Ahora</h2>
         <div class="now-list">
-          <div class="now-item">
-            <span class="tick"></span>
-            <p>
-              <span data-lang="es">Cerrando la licenciatura en administración de empresas. <span class="soft">La recta final.</span></span>
-              <span data-lang="en">Finishing my bachelor's in business administration. <span class="soft">The home stretch.</span></span>
-            </p>
-          </div>
-          <div class="now-item">
-            <span class="tick"></span>
-            <p>
-              <span data-lang="es">Explorando plataformas de datos y automatización aplicadas a la gestión.</span>
-              <span data-lang="en">Exploring data platforms and automation applied to management.</span>
-            </p>
-          </div>
-          <div class="now-item">
-            <span class="tick"></span>
-            <p>
-              <span data-lang="es">Construyendo este espacio: mi rincón propio en la web.</span>
-              <span data-lang="en">Building this space: my own corner of the web.</span>
-            </p>
-          </div>
+          <div class="now-item"><span class="tick"></span><p>Cerrando la licenciatura en administración de empresas. <span class="soft">La recta final.</span></p></div>
+          <div class="now-item"><span class="tick"></span><p>Aprendiendo a aprovechar los datos y la automatización para decidir mejor.</p></div>
+          <div class="now-item"><span class="tick"></span><p>Construyendo este espacio: mi rincón propio en la web.</p></div>
         </div>
-      </div>
+      </section>
 
-      <!-- Conecta -->
-      <div class="card card-pad reveal">
-        <p class="label">
-          <span data-lang="es">Conecta</span>
-          <span data-lang="en">Connect</span>
-        </p>
+      <section id="conecta">
+        <h2 class="label">Conecta</h2>
         <div class="connect">
           <a href="mailto:contacto@douglasdeleon.com">
             <span class="where">Email</span>
@@ -376,55 +118,17 @@
             <span class="handle">in/douglasdeleonjimenez</span>
             <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
           </a>
-          <!-- GitHub oculto temporalmente; descomentar para reactivar
-          <a href="https://github.com/Dxa17" target="_blank" rel="noopener">
-            <span class="where">GitHub</span>
-            <span class="handle">@Dxa17</span>
-            <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
-          </a>
-          -->
         </div>
+      </section>
+
+      <div class="signature">
+        <span>Douglas de León</span>
+      </div>
+      <div class="main-foot">
+        <span>© 2026 Douglas de León</span>
+        <span>douglasdeleon.com</span>
       </div>
     </main>
-
-    <footer>
-      <span>© 2026 Douglas de León</span>
-      <span>douglasdeleon.com</span>
-    </footer>
   </div>
-
-  <script>
-    function applyLang(lang) {
-      document.documentElement.classList.toggle('en', lang === 'en');
-      document.documentElement.lang = lang;
-      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-      try { localStorage.setItem('lang', lang); } catch (e) {}
-    }
-    function setLang(lang) {
-      if (document.documentElement.lang === lang) return;
-      document.body.classList.add('switching');
-      setTimeout(function () {
-        applyLang(lang);
-        document.body.classList.remove('switching');
-      }, 180);
-    }
-    (function () {
-      var saved = null;
-      try { saved = localStorage.getItem('lang'); } catch (e) {}
-      applyLang(saved || (navigator.language && navigator.language.startsWith('es') ? 'es' : 'en'));
-
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-          });
-        }, { threshold: 0.12 });
-        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-      } else {
-        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
-      }
-    })();
-  </script>
 </body>
 </html>
