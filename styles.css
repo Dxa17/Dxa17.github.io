@@ -13,6 +13,7 @@ html { background: var(--ground); scroll-behavior: smooth; }
 body {
   color: var(--ink); font-family: 'Instrument Sans', system-ui, sans-serif;
   font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; min-height: 100vh;
+  overflow-x: clip;
 }
 body::after {
   content: ''; position: fixed; inset: 0; z-index: 2147483647; pointer-events: none;
@@ -154,4 +155,24 @@ aside a:focus-visible { outline-color: var(--steel); }
   .side-bottom { margin-top: 36px; padding-top: 0; }
   main { padding-top: 46px; }
   .pulse { grid-template-columns: 1fr; }
+  .connect a { flex-wrap: wrap; row-gap: 2px; }
+  .connect .where { min-width: 0; }
+  .connect .handle { flex: 1 1 100%; order: 3; overflow-wrap: anywhere; }
+  .connect .arrow { margin-left: auto; }
+}
+@media (max-width: 520px) {
+  aside { padding: 44px 24px 38px; }
+  aside h1 { font-size: 2.1rem; margin-top: 24px; }
+  .cta-row { margin-top: 30px; }
+  .cta-row .btn { flex: 1 1 auto; justify-content: center; }
+  main { padding-left: 22px; padding-right: 22px; padding-top: 40px; }
+  .thesis { font-size: 1.85rem; }
+  .bio { padding-bottom: 36px; }
+  section { padding: 34px 0 38px; }
+  section.banded { padding: 30px 22px 34px; border-radius: 18px; }
+  .pullquote { padding-left: 18px; }
+  .pullquote .drop { font-size: 1.35rem; }
+  .connect .where { font-size: 1.12rem; }
+  .connect .handle { font-size: 0.84rem; }
+  .signature span { font-size: 2rem; }
 }
