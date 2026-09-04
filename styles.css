@@ -1,178 +1,520 @@
+/* =========================================================
+   Douglas de León — administrador de empresas
+   Registro visual: institucional clásico.
+   Blanco puro, verde inglés profundo, serif de texto antiguo.
+   Los pesos de filete (3px / 2px / 1px) marcan la jerarquía.
+   ========================================================= */
+
 :root {
-  --panel-a: #27456e; --panel-b: #1a2c4e; --panel-ink: #f0f4fb;
-  --panel-muted: #b0c2dc; --panel-faint: #8399bb;
-  --ground: #f7f9fc; --band: #ebf1f8;
-  --ink: #17222d; --slate: #4f5e6d; --faint: #8494a6;
-  --denim: #3a63a8; --steel: #8fb4e3;
-  --grad: linear-gradient(90deg, #3a63a8, #6b93c9);
-  --grad-light: linear-gradient(90deg, #9dbde8, #d0e0f4);
-  --hair: #dce3ec;
+  --white:  #ffffff;
+  --ink:    #14181c;   /* titulares */
+  --body:   #414951;   /* texto corrido */
+  --soft:   #6f7880;   /* datos secundarios */
+  --rule:   #dcdfe2;
+  --brand:  #173d33;   /* verde institucional: cámbialo aquí y cambia todo */
+  --brand-2:#2c6250;   /* hover */
+  --tint:   #f4f7f5;   /* banda tenue de la sección Herramientas */
+
+  --serif: 'EB Garamond', Garamond, 'Times New Roman', serif;
+  --sans:  'Libre Franklin', Helvetica, Arial, sans-serif;
+
+  --wrap: 1120px;
+  --pad: clamp(20px, 5vw, 56px);
 }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { background: var(--ground); scroll-behavior: smooth; }
+
+html {
+  background: var(--white);
+  scroll-behavior: smooth;
+  scroll-padding-top: 86px;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  color: var(--ink); font-family: 'Instrument Sans', system-ui, sans-serif;
-  font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; min-height: 100vh;
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--body);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
-body::after {
-  content: ''; position: fixed; inset: 0; z-index: 2147483647; pointer-events: none;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="180" height="180" filter="url(%23n)"/></svg>');
-  opacity: 0.025;
-}
-.frame { display: grid; grid-template-columns: minmax(310px, 390px) 1fr; min-height: 100vh; }
 
-/* ---- Panel de identidad ---- */
-aside {
-  background: linear-gradient(160deg, var(--panel-a) 0%, var(--panel-b) 100%);
-  color: var(--panel-ink); padding: 68px 54px 52px;
-  display: flex; flex-direction: column;
-  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--brand); color: #fff;
+  padding: 10px 16px; z-index: 60; text-decoration: none;
 }
-aside::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(40rem 28rem at 90% -12%, rgba(157,189,232,.22), transparent 62%),
-    radial-gradient(28rem 20rem at -15% 112%, rgba(10,18,34,.45), transparent 65%);
+.skip:focus { left: 12px; top: 12px; }
+
+/* =========================================================
+   Barra superior
+   ========================================================= */
+.topbar {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--white);
+  border-bottom: 3px solid var(--brand);
 }
-aside > * { position: relative; }
-.portrait { position: relative; width: 126px; height: 126px; }
-.avatar {
-  width: 126px; height: 126px; border-radius: 50%;
-  object-fit: cover; object-position: 50% 22%;
-  border: 3px solid rgba(240,244,251,.95);
-  box-shadow: 0 10px 30px rgba(8,15,30,.4); display: block;
+.topbar-inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 18px;
+  padding-bottom: 16px;
 }
-.portrait::after { content: ''; position: absolute; inset: -7px; border-radius: 50%; border: 1px solid rgba(157,189,232,.45); }
-aside h1 {
-  font-family: 'Instrument Serif', serif; font-weight: 400;
-  font-size: 2.45rem; letter-spacing: -0.01em; line-height: 1.08; margin-top: 28px;
+.brand {
+  font-family: var(--serif);
+  font-size: 1.32rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
 }
-.role {
-  color: var(--panel-muted); font-size: 0.8rem; font-weight: 600;
-  letter-spacing: 0.16em; text-transform: uppercase; margin-top: 12px;
+.nav { display: flex; gap: 26px; flex-wrap: wrap; }
+.nav a {
+  font-size: 0.79rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--soft);
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
 }
-.role::after { content: ''; display: block; width: 40px; height: 2px; background: var(--grad-light); border-radius: 2px; margin-top: 18px; }
-.side-nav { margin-top: 34px; display: flex; flex-direction: column; gap: 3px; }
-.side-nav a {
-  text-decoration: none; color: var(--panel-faint); font-size: 0.88rem; font-weight: 500;
-  padding: 6px 0; display: inline-flex; align-items: center; gap: 12px; transition: color .18s;
+.nav a:hover { color: var(--ink); }
+.nav a.active { color: var(--brand); border-bottom-color: var(--brand); }
+
+/* =========================================================
+   Portada
+   ========================================================= */
+.hero { border-bottom: 1px solid var(--rule); }
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: clamp(32px, 6vw, 76px);
+  align-items: center;
+  padding-top: clamp(52px, 8vw, 96px);
+  padding-bottom: clamp(52px, 8vw, 96px);
 }
-.side-nav a::before { content: ''; width: 16px; height: 1.5px; background: rgba(176,194,220,.3); border-radius: 2px; transition: all .18s; }
-.side-nav a:hover, .side-nav a.active { color: var(--panel-ink); }
-.side-nav a:hover::before, .side-nav a.active::before { width: 28px; background: var(--grad-light); }
-.cta-row { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+
+h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6.6vw, 4.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+
+.lead {
+  font-family: var(--serif);
+  font-size: clamp(1.12rem, 2.1vw, 1.34rem);
+  line-height: 1.55;
+  color: var(--body);
+  max-width: 44ch;
+  margin-top: 26px;
+}
+
+/* Ficha de datos: etiqueta arriba, dato debajo. Sin monoespaciadas. */
+.hero-meta {
+  /* Rejilla, no flex: con cinco datos el salto de línea los descuadraba. */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px 40px;
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.hero-meta dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+.hero-meta dd {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  color: var(--ink);
+  margin-top: 2px;
+}
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  font: inherit; font-size: 0.86rem; font-weight: 600; text-decoration: none;
-  padding: 10px 20px; border-radius: 999px; transition: all .18s;
+  display: inline-flex;
+  align-items: center;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  padding: 12px 26px;
+  border: 1px solid var(--brand);
+  transition: background .16s, color .16s, border-color .16s;
 }
-.btn svg { width: 16px; height: 16px; }
-.btn-primary { background: var(--panel-ink); color: var(--panel-b); }
-.btn-primary:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(8,15,30,.4); }
-.btn-ghost { border: 1px solid rgba(240,244,251,.32); color: var(--panel-ink); }
-.btn-ghost:hover { border-color: var(--steel); color: #d0e0f4; transform: translateY(-1px); }
-.side-bottom { margin-top: auto; padding-top: 44px; }
-.side-foot { color: rgba(176,194,220,.55); font-size: 0.76rem; }
+.btn-solid { background: var(--brand); color: #fff; }
+.btn-solid:hover { background: var(--brand-2); border-color: var(--brand-2); }
+.btn-line { color: var(--brand); background: transparent; }
+.btn-line:hover { background: var(--tint); }
 
-/* ---- Contenido ---- */
-main { padding: 96px clamp(32px, 6vw, 90px) 48px; max-width: 840px; margin: 0 auto; width: 100%; }
-.thesis {
-  font-family: 'Instrument Serif', serif; font-weight: 400;
-  font-size: clamp(2.15rem, 4.5vw, 3.1rem); line-height: 1.17;
-  letter-spacing: -0.015em; text-wrap: balance; padding-bottom: 22px;
+/* Retrato a color, formato de ficha institucional */
+.qr { display: none; }
+
+.portrait { position: relative; }
+.portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 18%;
 }
-.thesis em { font-style: italic; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.bio { color: var(--slate); font-size: 1rem; max-width: 54ch; padding-bottom: 50px; }
-section { padding: 42px 0 46px; }
-section.banded {
-  background: var(--band); border-radius: 22px;
-  padding: 40px clamp(26px, 4vw, 44px) 44px; margin: 6px 0;
+/* Filete de acento en el borde inferior, como un pie de foto de informe */
+.portrait::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 5px;
+  background: var(--brand);
 }
-.label {
-  display: flex; align-items: center; gap: 16px;
-  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--denim); margin-bottom: 26px; white-space: nowrap;
+
+/* =========================================================
+   Secciones
+   ========================================================= */
+.section { padding: clamp(48px, 7vw, 82px) 0; border-bottom: 1px solid var(--rule); }
+.section-tinted { background: var(--tint); }
+
+.section-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 3.4vw, 2.3rem);
+  line-height: 1.2;
+  letter-spacing: -0.008em;
+  color: var(--ink);
+  padding-bottom: 14px;
+  margin-bottom: 34px;
+  border-bottom: 2px solid var(--brand);
 }
-.label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(58,99,168,.35), rgba(58,99,168,.08)); }
-.pullquote {
-  position: relative; padding-left: 26px; border-left: 3px solid;
-  border-image: linear-gradient(180deg, #3a63a8, #9dbde8) 1;
+
+.prose { max-width: 68ch; }
+.prose p + p { margin-top: 18px; }
+/* Mismo tipo que el resto del cuerpo: la jerarquía la dan tamaño y color,
+   no un cambio de familia a media sección. */
+.lead-in {
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--ink);
 }
-.pullquote .drop {
-  font-family: 'Instrument Serif', serif; font-size: 1.62rem; line-height: 1.32;
-  letter-spacing: -0.01em; text-wrap: balance;
+
+/* =========================================================
+   Entradas de experiencia y formación
+   Cargo a la izquierda, fechas alineadas a la derecha.
+   ========================================================= */
+/* --- Agrupación por empresa: cuatro puestos bajo un mismo patrón
+       tienen que leerse como permanencia, no como cuatro empleos. --- */
+.employer + .employer { margin-top: 34px; }
+.employer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ink);
 }
-.pullquote .drop em { font-style: italic; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.quiet { color: var(--slate); font-size: 0.97rem; margin-top: 18px; max-width: 58ch; }
-.pulse { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; }
-.pulse-item { border-top: 1px solid rgba(58,99,168,.16); padding-top: 18px; }
-.pulse-item h3 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 1.26rem; letter-spacing: -0.01em; color: #2c4a7d; }
-.pulse-item p { margin-top: 5px; color: var(--slate); font-size: 0.9rem; }
-.now-list { display: flex; flex-direction: column; gap: 15px; }
-.now-item { display: flex; gap: 15px; align-items: baseline; }
-.now-item .tick { flex-shrink: 0; width: 20px; height: 1.5px; background: var(--grad); border-radius: 2px; transform: translateY(-4px); }
-.now-item p { font-size: 0.97rem; }
-.now-item .soft { color: var(--slate); }
-.connect { display: flex; flex-direction: column; }
-.connect a {
-  display: flex; align-items: center; gap: 18px; padding: 16px 2px;
-  border-bottom: 1px solid rgba(58,99,168,.16); text-decoration: none; color: var(--ink); transition: padding .2s ease;
+.employer-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.42rem;
+  letter-spacing: -0.012em;
+  color: var(--ink);
 }
-.connect a:first-child { padding-top: 4px; }
-.connect a:last-child { border-bottom: 0; }
-.connect a:hover { padding-left: 10px; }
-.connect a:hover .where { color: var(--denim); }
-.connect .where { font-family: 'Instrument Serif', serif; font-size: 1.24rem; min-width: 110px; transition: color .2s; }
-.connect .handle { color: var(--faint); font-size: 0.88rem; }
-.connect .arrow { margin-left: auto; color: var(--faint); display: inline-flex; }
-.connect .arrow svg { width: 16px; height: 16px; }
-.signature { padding: 34px 0 8px; text-align: center; }
-.signature span {
-  font-family: 'Instrument Serif', serif; font-style: italic; font-size: 2.4rem;
-  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+.employer-dates {
+  font-size: 0.86rem;
+  color: var(--soft);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
-.main-foot {
-  border-top: 1px solid var(--hair); padding: 20px 0 8px;
-  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-  color: var(--faint); font-size: 0.8rem;
+/* Los puestos van sangrados y colgados de un filete vertical, para que se
+   vea de un vistazo dónde empieza y dónde termina cada empresa. */
+.employer .entry {
+  padding-left: 26px;
+  border-left: 1px solid var(--rule);
 }
-a:focus-visible { outline: 2px solid var(--denim); outline-offset: 3px; border-radius: 4px; }
-aside a:focus-visible { outline-color: var(--steel); }
-@media (prefers-reduced-motion: no-preference) {
-  .rise { opacity: 0; transform: translateY(14px); animation: rise .75s cubic-bezier(.2,.65,.3,1) forwards; }
-  .rise-2 { animation-delay: .1s; }
-  .rise-3 { animation-delay: .2s; }
-  .rise-4 { animation-delay: .3s; }
-  @keyframes rise { to { opacity: 1; transform: none; } }
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.65,.3,1); }
-  .reveal.in { opacity: 1; transform: none; }
+.employer .entry:first-of-type { border-top: 0; padding-top: 22px; }
+
+.entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 40px;
+  align-items: start;
+  padding: 30px 0;
+  border-top: 1px solid var(--rule);
 }
-@media (max-width: 880px) {
-  .frame { grid-template-columns: 1fr; }
-  aside { position: static; height: auto; padding: 60px 32px 44px; }
-  .side-nav { display: none; }
-  .side-bottom { margin-top: 36px; padding-top: 0; }
-  main { padding-top: 46px; }
-  .pulse { grid-template-columns: 1fr; }
-  .connect a { flex-wrap: wrap; row-gap: 2px; }
-  .connect .where { min-width: 0; }
-  .connect .handle { flex: 1 1 100%; order: 3; overflow-wrap: anywhere; }
-  .connect .arrow { margin-left: auto; }
+.entry:first-of-type { border-top: 0; padding-top: 0; }
+.entry:last-of-type { padding-bottom: 0; }
+
+.entry-main h3 {          /* entradas sueltas: Formación */
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  color: var(--ink);
 }
-@media (max-width: 520px) {
-  aside { padding: 44px 24px 38px; }
-  aside h1 { font-size: 2.1rem; margin-top: 24px; }
-  .cta-row { margin-top: 30px; }
-  .cta-row .btn { flex: 1 1 auto; justify-content: center; }
-  main { padding-left: 22px; padding-right: 22px; padding-top: 40px; }
-  .thesis { font-size: 1.85rem; }
-  .bio { padding-bottom: 36px; }
-  section { padding: 34px 0 38px; }
-  section.banded { padding: 30px 22px 34px; border-radius: 18px; }
-  .pullquote { padding-left: 18px; }
-  .pullquote .drop { font-size: 1.35rem; }
-  .connect .where { font-size: 1.12rem; }
-  .connect .handle { font-size: 0.84rem; }
-  .signature span { font-size: 2rem; }
+.entry-main h4 {          /* puestos dentro de una empresa */
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.14rem;
+  line-height: 1.28;
+  color: var(--ink);
+}
+.entry-org { font-size: 0.95rem; color: var(--soft); margin-top: 4px; }
+.entry-note { margin-top: 12px; max-width: 62ch; }
+
+.entry-dates {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--soft);
+  white-space: nowrap;
+  text-align: right;
+  padding-top: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.entry-points { list-style: none; margin-top: 14px; max-width: 62ch; }
+.entry-points li { position: relative; padding-left: 22px; }
+.entry-points li + li { margin-top: 8px; }
+.entry-points li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.62em;
+  width: 7px; height: 7px;
+  background: var(--brand);
+}
+
+/* =========================================================
+   Herramientas
+   ========================================================= */
+.skills { display: grid; gap: 0; }
+.skills > div {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 6px 40px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+.skills > div:first-child { border-top: 0; padding-top: 0; }
+.skills dt {
+  font-family: var(--serif);
+  font-size: 1.14rem;
+  color: var(--ink);
+}
+.skills dd { color: var(--body); }
+
+/* =========================================================
+   Contacto
+   ========================================================= */
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px 60px;
+  align-items: start;
+}
+.contact-pitch {
+  font-family: var(--serif);
+  font-size: 1.42rem;
+  line-height: 1.42;
+  color: var(--ink);
+  max-width: 24ch;
+}
+.contact-list > div {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 6px 24px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+.contact-list > div:first-child { border-top: 0; padding-top: 0; }
+.contact-list dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+.contact-list dd a {
+  color: var(--brand);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(23, 61, 51, .3);
+  overflow-wrap: anywhere;
+  transition: border-color .15s;
+}
+.contact-list dd a:hover { border-bottom-color: var(--brand); }
+
+/* =========================================================
+   Pie
+   ========================================================= */
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 28px;
+  padding-bottom: 40px;
+  font-size: 0.84rem;
+  color: var(--soft);
+}
+
+a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+/* =========================================================
+   Adaptación
+   ========================================================= */
+@media (max-width: 980px) {
+  .hero-inner { grid-template-columns: minmax(0, 1fr) 270px; }
+  .hero-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skills > div { grid-template-columns: 200px minmax(0, 1fr); }
+}
+
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  html { scroll-padding-top: 16px; }
+  /* Fija ocuparía dos filas y ~145 px de pantalla: mejor que se vaya al hacer scroll. */
+  .topbar { position: static; }
+  .topbar-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .nav { gap: 8px 18px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 34px; }
+  .hero-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+  /* El retrato pasa arriba y a tamaño de ficha */
+  .portrait { order: -1; width: 168px; }
+  .entry { grid-template-columns: 1fr; gap: 0; }
+  .employer .entry { padding-left: 16px; }
+  .entry-dates { text-align: left; padding-top: 0; order: -1; margin-bottom: 6px; }
+  .skills > div,
+  .contact-list > div { grid-template-columns: 1fr; }
+  .contact { grid-template-columns: 1fr; gap: 26px; }
+  .contact-pitch { max-width: none; }
+  .actions .btn { flex: 1 1 auto; justify-content: center; }
+}
+
+/* =========================================================
+   Impresión — el PDF del currículum sale de aquí.
+   OJO: la página impresa mide ~739 px, por debajo del punto de
+   quiebre de 760 px, así que hay que deshacer a mano el diseño
+   móvil o el PDF sale con la maqueta de teléfono.
+   ========================================================= */
+@media print {
+  @page { size: Letter; margin: 10mm 14mm; }
+
+  :root { --brand: #000; --ink: #000; --body: #1f2429; --soft: #4a5259; --rule: #b6bbc0; --tint: #fff; }
+  html, body { background: #fff; font-size: 8.9pt; line-height: 1.32; }
+
+  .topbar, .actions, .skip, .contact-pitch, .footer { display: none; }
+  /* `.contact-list > div` tiene más especificidad que `.solo-web`: hay que igualarla. */
+  .solo-web, .contact-list > div.solo-web { display: none; }
+  .wrap { max-width: none; padding: 0; }
+
+  /* --- Encabezado --- */
+  .hero { border-bottom: 1px solid var(--rule); }
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr) 88px;
+    gap: 0 16pt;
+    align-items: start;
+    padding: 0 0 9pt;
+  }
+  .portrait { order: 0; width: auto; margin: 0; }   /* deshace el orden móvil */
+  .portrait::after { display: none; }
+  /* Medidas explícitas: al imprimir, aspect-ratio no se respeta y la foto se alarga. */
+  .portrait img { width: 88px; height: 110px; }
+  .qr { display: block; margin-top: 7pt; }
+  .qr svg { display: block; width: 88px; height: 88px; }
+  .qr p { margin-top: 2pt; font-size: 6.2pt; text-align: center; color: var(--soft); }
+  h1 { font-size: 17.5pt; line-height: 1.05; }
+  .lead { font-size: 9.4pt; margin-top: 5pt; max-width: none; }
+  .hero-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5pt 16pt; margin-top: 6pt; padding-top: 6pt;
+  }
+  .hero-meta dt { font-size: 6.6pt; }
+  .hero-meta dd { font-size: 9pt; }
+
+  /* --- Secciones: que fluyan; solo las entradas evitan partirse --- */
+  .section { padding: 3pt 0; border: 0; }
+
+  /* --- Contacto al encabezado ---
+     En pantalla va al final; en papel tiene que estar arriba, junto al nombre.
+     Se reordena con flex y se compacta a una línea, sin su título. */
+  main { display: flex; flex-direction: column; }
+  .hero        { order: 1; border-bottom: 0; }
+  #contacto    { order: 2; padding: 4pt 0 6pt; border-bottom: 1px solid var(--rule); }
+  #perfil      { order: 3; }
+  #experiencia { order: 4; }
+  #formacion   { order: 5; }
+  #herramientas{ order: 6; }
+
+  #contacto .section-title { display: none; }
+  .contact-list { display: flex; flex-wrap: wrap; gap: 3pt 20pt; }
+  .contact-list > div {
+    display: flex; align-items: baseline; gap: 6pt;
+    border: 0; padding: 0;
+  }
+  .contact-list dt { font-size: 6.6pt; }
+  .section-title {
+    font-size: 11.5pt; padding-bottom: 3pt; margin-bottom: 5pt;
+    break-after: avoid;   /* que no quede solo al pie de una página */
+  }
+  .entry-main h3, .entry-main h4 { break-after: avoid; }
+  .prose { max-width: none; }
+  /* Los dos últimos párrafos repiten lo que ya dicen las viñetas: fuera en papel. */
+  #perfil .prose p:nth-child(n+4) { display: none; }
+  .prose p + p { margin-top: 4pt; }
+  .lead-in { font-size: 9.6pt; }
+
+  /* --- Entradas: fechas de vuelta a la derecha --- */
+  .entry {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2pt 18pt;
+    padding: 4pt 0;
+  }
+  .entry-points li, .prose p, .entry-note { orphans: 2; widows: 2; break-inside: avoid; }
+  .entry-dates { order: 0; text-align: right; padding-top: 2pt; margin: 0; font-size: 8.6pt; }
+  .entry-main h3 { font-size: 10pt; }
+  .entry-main h4 { font-size: 9.6pt; break-after: avoid; }
+  .employer + .employer { margin-top: 9pt; }
+  .employer-head { padding-bottom: 3pt; break-after: avoid; }
+  .employer-name { font-size: 11pt; }
+  .employer-dates { font-size: 8.2pt; }
+  .employer .entry { padding-left: 12pt; }
+  .employer .entry:first-of-type { padding-top: 5pt; }
+  /* Las cifras del teléfono son de altura completa y se ven más grandes
+     que el texto en minúsculas: bajo un punto toda la línea de contacto. */
+  .contact-list dd { font-size: 8.3pt; }
+  .entry-org { font-size: 8.8pt; margin-top: 2pt; }
+  .entry-note { margin-top: 5pt; max-width: none; }
+  .entry-points { margin-top: 5pt; max-width: none; }
+  .entry-points li + li { margin-top: 2pt; }
+  .entry-points li { padding-left: 14px; }
+  .entry-points li::before { width: 5px; height: 5px; top: 0.5em; }
+
+  /* --- Herramientas y contacto: recuperar las dos columnas --- */
+  .skills > div {
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 3pt 18pt; padding: 3pt 0;
+  }
+  .skills dt { font-size: 9.4pt; }
+  .contact { grid-template-columns: 1fr; gap: 0; }
+  .contact-list > div {
+    grid-template-columns: 90px minmax(0, 1fr);
+    gap: 3pt 18pt; padding: 3pt 0;
+  }
+
+  a { color: #000; }
+  .contact-list dd a { border: 0; }
 }
