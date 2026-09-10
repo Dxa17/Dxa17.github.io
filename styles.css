@@ -202,16 +202,6 @@ h1 {
   border-bottom: 2px solid var(--brand);
 }
 
-.prose { max-width: 68ch; }
-.prose p + p { margin-top: 18px; }
-/* Mismo tipo que el resto del cuerpo: la jerarquía la dan tamaño y color,
-   no un cambio de familia a media sección. */
-.lead-in {
-  font-size: 1.1rem;
-  line-height: 1.55;
-  color: var(--ink);
-}
-
 /* =========================================================
    Entradas de experiencia y formación
    Cargo a la izquierda, fechas alineadas a la derecha.
@@ -361,6 +351,22 @@ h1 {
   color: var(--soft);
 }
 
+/* =========================================================
+   Justificado
+   Solo el texto corrido. La partición de palabras es obligatoria:
+   sin ella, el castellano abre huecos enormes entre palabras.
+   Depende de lang="es" en <html>.
+   ========================================================= */
+/* Herramientas queda fuera: sus filas son enumeraciones separadas por
+   "·" y el justificado abre huecos enormes alrededor del separador. */
+.lead,
+.entry-points li,
+.entry-note {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
 a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
 
 /* =========================================================
@@ -440,10 +446,9 @@ a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
   main { display: flex; flex-direction: column; }
   .hero        { order: 1; border-bottom: 0; }
   #contacto    { order: 2; padding: 4pt 0 6pt; border-bottom: 1px solid var(--rule); }
-  #perfil      { order: 3; }
-  #experiencia { order: 4; }
-  #formacion   { order: 5; }
-  #herramientas{ order: 6; }
+  #experiencia { order: 3; }
+  #formacion   { order: 4; }
+  #herramientas{ order: 5; }
 
   #contacto .section-title { display: none; }
   .contact-list { display: flex; flex-wrap: wrap; gap: 3pt 20pt; }
@@ -457,9 +462,6 @@ a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
     break-after: avoid;   /* que no quede solo al pie de una página */
   }
   .entry-main h3, .entry-main h4 { break-after: avoid; }
-  .prose { max-width: none; }
-  .prose p + p { margin-top: 4pt; }
-  .lead-in { font-size: 9.6pt; }
 
   /* --- Entradas: fechas de vuelta a la derecha --- */
   .entry {
@@ -467,7 +469,7 @@ a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
     gap: 2pt 18pt;
     padding: 4pt 0;
   }
-  .entry-points li, .prose p, .entry-note { orphans: 2; widows: 2; break-inside: avoid; }
+  .entry-points li, .entry-note { orphans: 2; widows: 2; break-inside: avoid; }
   .entry-dates { order: 0; text-align: right; padding-top: 2pt; margin: 0; font-size: 8.6pt; }
   .entry-main h3 { font-size: 10pt; }
   .entry-main h4 { font-size: 9.6pt; break-after: avoid; }
