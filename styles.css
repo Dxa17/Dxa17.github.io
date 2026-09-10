@@ -117,13 +117,14 @@ h1 {
   font-size: clamp(1.12rem, 2.1vw, 1.34rem);
   line-height: 1.55;
   color: var(--body);
-  max-width: 44ch;
+  max-width: 46ch;
   margin-top: 26px;
 }
 
 /* Ficha de datos: etiqueta arriba, dato debajo. Sin monoespaciadas. */
 .hero-meta {
-  /* Rejilla, no flex: con cinco datos el salto de línea los descuadraba. */
+  /* Rejilla, no flex: el salto de línea descuadraba los datos.
+     Tres columnas, tres datos: una sola fila. */
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px 40px;
@@ -320,19 +321,7 @@ h1 {
 /* =========================================================
    Contacto
    ========================================================= */
-.contact {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 32px 60px;
-  align-items: start;
-}
-.contact-pitch {
-  font-family: var(--serif);
-  font-size: 1.42rem;
-  line-height: 1.42;
-  color: var(--ink);
-  max-width: 24ch;
-}
+.contact { max-width: 68ch; }
 .contact-list > div {
   display: grid;
   grid-template-columns: 130px minmax(0, 1fr);
@@ -379,7 +368,6 @@ a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
    ========================================================= */
 @media (max-width: 980px) {
   .hero-inner { grid-template-columns: minmax(0, 1fr) 270px; }
-  .hero-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .skills > div { grid-template-columns: 200px minmax(0, 1fr); }
 }
 
@@ -399,8 +387,6 @@ a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
   .entry-dates { text-align: left; padding-top: 0; order: -1; margin-bottom: 6px; }
   .skills > div,
   .contact-list > div { grid-template-columns: 1fr; }
-  .contact { grid-template-columns: 1fr; gap: 26px; }
-  .contact-pitch { max-width: none; }
   .actions .btn { flex: 1 1 auto; justify-content: center; }
 }
 
@@ -416,7 +402,7 @@ a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
   :root { --brand: #000; --ink: #000; --body: #1f2429; --soft: #4a5259; --rule: #b6bbc0; --tint: #fff; }
   html, body { background: #fff; font-size: 8.9pt; line-height: 1.32; }
 
-  .topbar, .actions, .skip, .contact-pitch, .footer { display: none; }
+  .topbar, .actions, .skip, .footer { display: none; }
   /* `.contact-list > div` tiene más especificidad que `.solo-web`: hay que igualarla. */
   .solo-web, .contact-list > div.solo-web { display: none; }
   .wrap { max-width: none; padding: 0; }
@@ -472,8 +458,6 @@ a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
   }
   .entry-main h3, .entry-main h4 { break-after: avoid; }
   .prose { max-width: none; }
-  /* Los dos últimos párrafos repiten lo que ya dicen las viñetas: fuera en papel. */
-  #perfil .prose p:nth-child(n+4) { display: none; }
   .prose p + p { margin-top: 4pt; }
   .lead-in { font-size: 9.6pt; }
 
@@ -509,7 +493,9 @@ a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
     gap: 3pt 18pt; padding: 3pt 0;
   }
   .skills dt { font-size: 9.4pt; }
-  .contact { grid-template-columns: 1fr; gap: 0; }
+  /* En pantalla la lista va acotada a 68ch; en papel es una sola línea
+     y ese tope la partía en dos. */
+  .contact { max-width: none; }
   .contact-list > div {
     grid-template-columns: 90px minmax(0, 1fr);
     gap: 3pt 18pt; padding: 3pt 0;
