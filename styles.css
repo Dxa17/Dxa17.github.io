@@ -231,11 +231,11 @@ h1 {
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-/* Los puestos van sangrados y colgados de un filete vertical, para que se
-   vea de un vistazo dónde empieza y dónde termina cada empresa. */
+/* Los puestos van sangrados bajo el nombre de la empresa. La sangría sola
+   basta para agruparlos: un filete vertical, al no cerrar por abajo, deja a
+   medias un rectángulo que el ojo intenta completar. */
 .employer .entry {
   padding-left: 26px;
-  border-left: 1px solid var(--rule);
 }
 .employer .entry:first-of-type { border-top: 0; padding-top: 22px; }
 
